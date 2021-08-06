@@ -7,6 +7,10 @@ class dashboard extends CI_Controller{
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->model('mcrud');
+
+		if($this->session->userdata('userid') == null){
+			redirect(URL_BASE . 'login');
+		}
 	}
 
     public function index()

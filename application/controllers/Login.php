@@ -64,12 +64,12 @@ class Login extends CI_Controller
 		$this->session->unset_userdata('userid');
 		$this->session->unset_userdata('active_status');
 		$this->session->unset_userdata('pass_status');
+		$this->session->sess_destroy();
 
 		redirect(URL_BASE . 'login');
 	}
 
-	public function reset_password()
-	{
+	public function reset_password(){
 		if(!$_POST){
 			$this->load->view('includes/login_header');
 			$this->load->view('reset_password/reset_password');
@@ -77,29 +77,29 @@ class Login extends CI_Controller
 		}else{
 
 			$email = $this->input->post('email');
-			$password = ($this->input->post('password'));
+			$password = md5($this->input->post('password'));
+			
+         	$this->form_validation->set_rules('email','email','required');
+         	$this->form_validation->set_rules('password','password','required');
 
-			$data = array("password" => $password);
-			$res = $this->mcrud->updateDataByForm('users', $data, array('email'=>$email));
+	       if ($this->form_validation->run() == FALSE) {
+	        $this->session->set_userdata('error', ' password updation failed!');
+	        redirect(URL_BASE . 'login/reset_password');
+	        }else{
+				$verifyEmail = $this->mcrud->getDataById('users',$email,'email');
+				if(count($verifyEmail) == 0){
+	 				$this->session->set_userdata('error', ' Email does not exists!');
+	 				redirect(URL_BASE . 'login/reset_password');
+				}else{
+					$data = array("password" => $password, 'pass_status' => 0);
+					$res = $this->mcrud->updateDataByForm('users', $data, array('email'=>$email));
+					$this->session->set_userdata('success', ' User has been updated succesfully!');
+	 				redirect(URL_BASE . 'dashboard');
+				}
 
-			var_dump($res);
-
-
+	        }         	
 		}
-		
-		// $email = $this->input->post('email');
-		// $user = $this->login_model->getUserDataByEmail($email);
-
-		// $id = ($user->id);
-		// $pass = $user->password;
-		// $password = $this->input->post('password');
-		
-	
-		// var_dump($pass);
-		// $result = $this->mcrud->updateDataByForm('users', $data, $id);
-		// redirect(URL_BASE . 'login/reset_password');
-
 	}		
 
-	}
 
+}
