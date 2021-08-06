@@ -13,7 +13,7 @@
                                 <?php
                                 $role = ($userInfo[0]->role);
                                 if ($role == 1) {
-                                    echo "Super Admin";
+                                    echo "Admin";
                                 } else {
                                     echo "Standard User";
                                 }
@@ -173,7 +173,3 @@
 
                 </nav>
             </div>
-
-
-
-           

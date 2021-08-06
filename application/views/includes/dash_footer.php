@@ -3,7 +3,7 @@
         10GB of <strong>250GB</strong> Free.
     </div>
     <div>
-        <strong>Copyright</strong> Example Company &copy; 2014-2018
+        <strong>Copyright</strong> Example Company &copy; 2021-2022
     </div>
 </div>
 
@@ -25,7 +25,8 @@
 <!-- Sweet alert -->
 <script src="<?= base_url(); ?>assets/js/plugins/sweetalert/sweetalert.min.js"></script>
 
-
+<script src="<?= base_url(); ?>assets/js/plugins/dataTables/datatables.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
 
 </body>
 

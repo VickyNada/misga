@@ -21,6 +21,8 @@
     <!-- JS -->
     <script src="<?= base_url(); ?>assets/js/jquery-3.1.1.min.js"></script>
 
+    <link href="<?= base_url(); ?>assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+
         
 </head>
 <body>

@@ -45,7 +45,7 @@
                                 <th>Email</th>
                                 <th>Status</th>
                                 <th>Edit User</th>
-                                <th>Delete User</th>
+                                <th id="deleteth">Delete User</th>
                                 <th>User Block</th>
                             </tr>
                         </thead>
@@ -93,6 +93,7 @@
                     <div class="form-group"><label>First Name</label> <input type="text" placeholder="Enter your First Name" id="addFname" name="addFname" class="form-control"></div>
                     <div class="form-group"><label>Last Name </label> <input type="text" placeholder="Enter your Last Name" id="addLname" name="addLname" class="form-control"></div>
                     <div class="form-group"><label>Email</label> <input type="email" placeholder="Enter your Email" id="addEmail" name="addEmail" class="form-control"></div>
+                    <div class="form-group"><input type="hidden" value="1" id="addpass" name="addpass" class="form-control"></div>
 
                 </div>
                 <div class="modal-footer">
@@ -140,28 +141,7 @@
             </div>
         </form>
     </div>
-</div>     
-
-<button class = "demo3"> test </button>
-
-<script>
-
-$('.demo3').click(function () {
-  
-    swal({
-        title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it!",
-        closeOnConfirm: false
-    }, function () {
-        swal("Deleted!", "Your imaginary file has been deleted.", "success");
-    });
-});
-
-</script>
+</div>
 
 
 <script>
@@ -169,10 +149,12 @@ $('.demo3').click(function () {
         $('.footable').footable();
         $('.footable2').footable();
         // Fetch all user data on page load call here 
-         getAlluserData();
-        //  page();
+        getAlluserData();
+        page();
 
         // Add user data to database
+
+
 
         $("#addUserDataBtn").click(function() {
 
@@ -182,6 +164,8 @@ $('.demo3').click(function () {
                 'addFname': $('#addFname').val(),
                 'addLname': $('#addLname').val(),
                 'addEmail': $('#addEmail').val(),
+                'addpass': $('#addpass').val(),
+
             };
             $.ajax({
                 method: "POST",
@@ -214,33 +198,66 @@ $('.demo3').click(function () {
     // get all user data on page load 
     function getAlluserData() {
 
-        $(".ibox-content-loader").css("display","block");
-        $(".ibox-content").css("display","none");
-        
+        $(".ibox-content-loader").css("display", "block");
+        $(".ibox-content").css("display", "none");
+
         $.ajax({
             method: "GET",
             url: "<?= base_url() . 'index.php/userManagement_controler/getAlluserData' ?>",
             success: function(response) {
-                $(".ibox-content-loader").css("display","none");
-                $(".ibox-content").css("display","block");                
+                $(".ibox-content-loader").css("display", "none");
+                $(".ibox-content").css("display", "block");
                 $(".tableBody").html('');
                 $(".tableBody").append(response);
+                setTimeout(() => {
+                    $("#deleteth").click();
+
+                }, 200);
             }
         })
     }
 
-    // delete the user data from table 
+
+
+    // function deleteUser(id) {
+    //     $.ajax({
+    //         method: "GET",
+    //         url: "<?= base_url() . 'index.php/userManagement_controler/deleteUserData' ?>",
+    //         data: {
+    //             "id": id
+    //         },
+    //         success: function(response) {
+    //             getAlluserData();
+    //         }
+    //     });
+    // }
+
+
+    // delete the user data from table (With sweet alert )
 
     function deleteUser(id) {
-        $.ajax({
-            method: "GET",
-            url: "<?= base_url() . 'index.php/userManagement_controler/deleteUserData' ?>",
-            data: {
-                "id": id
-            },
-            success: function(response) {
-                getAlluserData();
-            }
+
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this User data!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#ed5565",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        }, function() {
+            $.ajax({
+                method: "GET",
+                url: "<?= base_url() . 'index.php/userManagement_controler/deleteUserData' ?>",
+                data: {
+                    "id": id
+                },
+                success: function(response) {
+                    swal("Deleted!", "User has been deleted.", "success");
+                    getAlluserData();
+                }
+            });
+
         });
     }
 

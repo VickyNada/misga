@@ -15,4 +15,11 @@ class login_model extends CI_model
             return [];
         }
     }
+
+    function getUserDataByEmail($email){
+        return $this-> db->where('email',$email)->get('users')->row();
+       
+    }
+
+
 }

@@ -9,6 +9,7 @@ class Login extends CI_Controller
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->model('login_model');
+		$this->load->model('mcrud');
 	}
 
 	public function index()
@@ -37,9 +38,15 @@ class Login extends CI_Controller
 				$this->session->set_userdata('username', $result[0]['first_name'] . " " . $result[0]['last_name']);
 				$this->session->set_userdata('userid', $result[0]['id']);
 				$this->session->set_userdata('active_status', $result[0]['active_status']);
-				
-				if ($result[0]['role'] !== 0 && $result[0]['active_status'] == 0 ) {
-					redirect(URL_BASE . 'dashboard');
+				$this->session->set_userdata('pass_status', $result[0]['pass_status']);
+
+				if ($result[0]['role'] !== 0 && $result[0]['active_status'] == 0) {
+					// redirect(URL_BASE . 'dashboard');
+					if ($result[0]['pass_status'] == 0) {
+						redirect(URL_BASE . 'dashboard');
+					} else {
+						redirect(URL_BASE . 'login/reset_password');
+					}
 				} else {
 					$this->session->set_userdata('error', ' This account blocked by admin');
 					redirect(URL_BASE . 'login');
@@ -55,6 +62,44 @@ class Login extends CI_Controller
 	{
 		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('userid');
-        redirect(URL_BASE . 'login');
+		$this->session->unset_userdata('active_status');
+		$this->session->unset_userdata('pass_status');
+
+		redirect(URL_BASE . 'login');
 	}
-}
+
+	public function reset_password()
+	{
+		if(!$_POST){
+			$this->load->view('includes/login_header');
+			$this->load->view('reset_password/reset_password');
+			$this->load->view('includes/login_footer');
+		}else{
+
+			$email = $this->input->post('email');
+			$password = ($this->input->post('password'));
+
+			$data = array("password" => $password);
+			$res = $this->mcrud->updateDataByForm('users', $data, array('email'=>$email));
+
+			var_dump($res);
+
+
+		}
+		
+		// $email = $this->input->post('email');
+		// $user = $this->login_model->getUserDataByEmail($email);
+
+		// $id = ($user->id);
+		// $pass = $user->password;
+		// $password = $this->input->post('password');
+		
+	
+		// var_dump($pass);
+		// $result = $this->mcrud->updateDataByForm('users', $data, $id);
+		// redirect(URL_BASE . 'login/reset_password');
+
+	}		
+
+	}
+
