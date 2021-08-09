@@ -1,10 +1,4 @@
-<!-- <style>
-a[href="#previous"] {
-   background-color: 'warning';
-}
-</style>     -->
-
-<div class="middle-box wrapper wrapper-content animated fadeInRight" style="margin-left: 25%;max-width: 1400px;">
+<div class="middle-box wrapper wrapper-content animated fadeInRight registration" style="margin-left: 25%;max-width: 1400px;">
     <div class="row">
         <div class="col-lg-8">
             <div class="ibox">
@@ -14,118 +8,115 @@ a[href="#previous"] {
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
                         </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#" class="dropdown-item">Config option 1</a>
-                            </li>
-                            <li><a href="#" class="dropdown-item">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
+                        <a href="<?= base_url() . 'index.php/login/login' ?>">
                             <i class="fa fa-times"></i>
                         </a>
                     </div>
                 </div>
                 <div class="ibox-content">
                     <h2>
-                        Customer Registration Form
+                        <strong>Customer Registration Form</strong>
                     </h2>
                     <p>
                         Please complete all steps to prceed with registration
                     </p>
 
-                    <form id="form" action="#" class="wizard-big">
-                        <h1>Account</h1>
-                        <fieldset>
-                            <h2>Account Information</h2>
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="form-group">
-                                        <label>Email *</label>
-                                        <input id="email" name="email" type="text" class="form-control required">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Password *</label>
-                                        <input id="password" name="password" type="text" class="form-control required">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Confirm Password *</label>
-                                        <input id="confirm" name="confirm" type="text" class="form-control required">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="text-center">
-                                        <div style="margin-top: 20px">
-                                            <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <?php if ($this->session->userdata('error')) { ?>
+                        <div class="alert alert-danger alert-dismissable"><?php echo $this->session->userdata('error'); ?> </div>
+                    <?php $this->session->unset_userdata('error');
+                    } ?>
 
-                        </fieldset>
-                        <h1>Profile</h1>
-                        <fieldset>
-                            <h2>Profile Information</h2>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>First name *</label>
-                                        <input id="firstname" name="firstname" type="text" class="form-control required">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>NIC *</label>
-                                        <input id="nic" name="nic" type="text" class="form-control required">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Delivery Address *</label>
-                                        <input id="daddress" name="daddress" type="text" class="form-control required">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Last name *</label>
-                                        <input id="lastname" name="lastname" type="text" class="form-control required">
-                                    </div>                                    
-                                    <div class="form-group">
-                                        <label>Billing Address *</label>
-                                        <input id="baddress" name="baddress" type="text" class="form-control required">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>City *</label>
-                                        <input id="city" name="city" type="text" class="form-control required">
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
+                    <?php $attributes = array('id' => 'form', 'class' => 'wizard-big', 'method' => 'post');
+                    echo form_open_multipart(base_url() . 'index.php/registration/reg_customer', $attributes); ?>
 
-                        <h1>Contact Details</h1>
-                        <fieldset>
+                    <h1>Account</h1>
+                    <fieldset>
+                        <h2>Account Information</h2>
                         <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>Contact 1 *</label>
-                                        <input id="conatct1" name="conatct1" type="text" class="form-control required">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Profile Picture *</label>
-                                        <input type="file">
-                                    </div>  
-                                </div>
-                                <div class="col-lg-6">
+                            <div class="col-lg-8">
                                 <div class="form-group">
-                                        <label>Contact2</label>
-                                        <input id="contact2" name="contact2" type="text" class="form-control required">
+                                    <label>Email *</label>
+                                    <input id="email" name="email" type="text" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label>Password *</label>
+                                    <input id="password" name="password" type="text" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm Password *</label>
+                                    <input id="confirm" name="confirm" type="text" class="form-control required">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="text-center">
+                                    <div style="margin-top: 20px">
+                                        <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
                                     </div>
                                 </div>
                             </div>
-                        </fieldset>
+                        </div>
+
+                    </fieldset>
+                    <h1>Profile</h1>
+                    <fieldset>
+                        <h2>Profile Information</h2>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>First name *</label>
+                                    <input id="firstname" name="firstname" type="text" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label>NIC *</label>
+                                    <input id="nic" name="nic" type="text" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label>Delivery Address *</label>
+                                    <input id="daddress" name="daddress" type="text" class="form-control required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Last name *</label>
+                                    <input id="lastname" name="lastname" type="text" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label>Billing Address *</label>
+                                    <input id="baddress" name="baddress" type="text" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label>City *</label>
+                                    <input id="city" name="city" type="text" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <h1>Contact Details</h1>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Contact 1 *</label>
+                                    <input id="contact1" name="contact1" type="text" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label>Contact2</label>
+                                    <input id="contact2" name="contact2" type="text" class="form-control required">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Profile Picture *</label>
+                                    <input type="file" id="profilepic" name="profilepic" />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -187,14 +178,41 @@ a[href="#previous"] {
                 // Submit form input
                 form.submit();
             }
+
         }).validate({
             errorPlacement: function(error, element) {
                 element.before(error);
             },
             rules: {
                 confirm: {
-                    equalTo: "#password"
-                }
+                    equalTo: "#password",
+                },
+
+                nic: {
+                    number: true,
+                    minlength: 9,
+                    maxlength: 12,
+                },
+
+                contact1: {
+                    number: true,
+                    minlength: 10,
+                    maxlength: 10,
+                },
+
+                contact2: {
+                    number: true,
+                    minlength: 10,
+                    maxlength: 10,
+                },
+                profilepic: {
+                    extension: "gif|jpg|png"
+                },
+            },
+            messages: {
+                profilepic: {
+                    extension: "Files should be in gif or jpg or png format"
+                },
             }
         });
     });

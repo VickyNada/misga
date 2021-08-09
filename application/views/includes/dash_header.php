@@ -13,6 +13,7 @@
     <link href="<?= base_url(); ?>assets/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/animate.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/custom-style.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/plugins/footable/footable.core.css" rel="stylesheet">
 
       <!-- Sweet Alert -->

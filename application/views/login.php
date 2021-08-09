@@ -10,6 +10,10 @@
                 <div class="alert alert-danger alert-dismissable"><?php echo $this->session->userdata('error'); ?> </div>
             <?php $this->session->unset_userdata('error');
             } ?>
+            <?php if ($this->session->userdata('success')) { ?>
+                <div class="alert alert-success alert-dismissable"><?php echo $this->session->userdata('success'); ?> </div>
+            <?php $this->session->unset_userdata('success');
+            } ?>            
 
             <p>Login</p>
             <form class="m-t" role="form" method="post" action="<?= base_url() . 'index.php/login/login' ?>" id="form">
@@ -44,11 +48,11 @@
             </div>
             <div class="modal-body">
                 <div style="margin:auto;">
-                    <button type="button" class="btn btn-outline btn-primary" onClick="redirect('1')">Customer</button>
-                    <button type="button" class="btn btn-outline btn-success" onClick="redirect('2')">Farmer</button>
+                    <button type="button" class="btn btn-outline btn-success" onclick="redirect('1')" style="width: 30%;margin-left: 15px;">Customer</button>
+                    <button type="button" class="btn btn-outline btn-primary" onClick="redirect('2')"style="width: 30%;margin-right: 15px;margin-left: 10px;">Farmer</button>
                     <button type="button" class="btn btn-outline btn-warning" onClick="redirect('3')">Delivery Person</button>
                 </div>
-            </div>
+            </div>   
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
             </div>
@@ -89,11 +93,11 @@
     function redirect(loc) {
         var url = '#'
         if (loc == 1) {
-            url = "<?= base_url() . 'index.php/registration/reg_cus' ?>";
+            url = "<?= base_url() . 'index.php/registration/reg_customer' ?>";
         } else if (loc == 2) {
-            url = "<?= base_url() . 'index.php/registration/reg_far' ?>";
+            url = "<?= base_url() . 'index.php/registration/reg_farmer' ?>";
         } else if (loc == 3) {
-            url = "<?= base_url() . 'index.php/registration/reg_del' ?>";
+            url = "<?= base_url() . 'index.php/registration/reg_deliveryuser' ?>";
         }
         window.location.href = url;
     }

@@ -9,6 +9,7 @@
 <script src="<?= base_url(); ?>assets/js/plugins/pace/pace.min.js"></script>
 
 <script src="<?= base_url(); ?>assets/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/plugins/validate/additional-methods.js"></script>
 <script src="<?= base_url(); ?>assets/js/plugins/sweetalert/sweetalert.min.js"></script>
 
 </body>
