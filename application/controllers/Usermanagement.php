@@ -1,6 +1,6 @@
 <?php
 
-class userManagement_controler extends CI_Controller
+class Usermanagement extends CI_Controller
 {
 
 	public function __construct()
@@ -16,7 +16,7 @@ class userManagement_controler extends CI_Controller
 		$data["userInfo"] = $this->mcrud->getDataById('users', $userid, 'id');
 		$this->load->view('includes/dash_header');
 		$this->load->view('includes/navigation', $data);
-		$this->load->view('User_management/user_management');
+		$this->load->view('admin/Usermanagement/index');
 		$this->load->view('includes/dash_footer');
 	}
 
@@ -29,8 +29,10 @@ class userManagement_controler extends CI_Controller
 		foreach ($allusers as $user) {
 			if ($user->role == 1) {
 				$userrole = "Admin";
+				$batchStyle = 'badge badge-primary';
 			} else {
 				$userrole = "Standard User";
+				$batchStyle = 'badge badge-success';
 			}
 			if ($user->active_status == 0) {
 				$status = "Active";
@@ -43,14 +45,13 @@ class userManagement_controler extends CI_Controller
 			}
 			$dataString .= '
 				<tr class="grade">
-				<td>' . $userrole . '</td>
 				<td>' . $user->first_name . '</td>
 				<td>' . $user->last_name . '</td>
+				<td><span class="'.$batchStyle.'">' . $userrole . '</span></td>
 				<td>' . $user->email . '</td>
-				<td>' . $status . '</td>
 				<td><a class="btn btn-warning btn-rounded" id="editUserBtn" onclick="editUser(' . $user->id . ')" href="#" ><i class="fa fa-pencil-square-o"></i> Edit</a></td>
 				<td><a class="btn btn-danger btn-rounded" id="deleteUserBtn" onclick="deleteUser(' . $user->id . ') " href="#" ><i class="fa fa-trash-o"></i> Delete</a></td>
-				<td><a class="' . $btnclass . '" id="blockUserBtn" onclick="blockUser(' . $user->id . ',' . $user->active_status . ') " href="#" ><i class="' . $faclass . '" aria-hidden="true"></i></a></td>
+				<td><div style="width: 40%; float:left">' . $status . '</div><div style="width: 60%; float:left"><a class="' . $btnclass . '" id="blockUserBtn" onclick="blockUser(' . $user->id . ',' . $user->active_status . ') " href="#" ><i class="' . $faclass . '" aria-hidden="true"></i></a></div></td>
 				</tr>';
 		}
 		echo $dataString;
@@ -65,18 +66,17 @@ class userManagement_controler extends CI_Controller
 
 	public function addUser()
 	{
-
 		$data = array(
-
 			'role'		=> $_POST['addRole'],
 			'first_name' => $_POST['addFname'],
 			'last_name'	=> $_POST['addLname'],
 			'email'		=> $_POST['addEmail'],
-			// it will make pass status to 1
+			'password'		=> md5($_POST['addEmail']),
 			'pass_status' => $_POST['addpass'], 
 
 		);
 		$result = $this->mcrud->addDataByForm('users', $data);
+		echo $result;
 	}
 
 	public function deleteUserData()
@@ -89,7 +89,7 @@ class userManagement_controler extends CI_Controller
 		$data['userDelete'] = $this->mcrud->updateDataByForm('users', $data, $id);
 
 
-		redirect(URL_BASE . 'userManagement_controler');
+		redirect(URL_BASE . 'usermanagement');
 	}
 
 	public function updateUserData()
@@ -116,7 +116,7 @@ class userManagement_controler extends CI_Controller
 		$data = array('active_status' => $new_Status);
 
 		$data['userBlock'] = $this->mcrud->updateDataByForm('users', $data, $id);
-		redirect(URL_BASE . 'userManagement_controler');
+		redirect(URL_BASE . 'usermanagement');
 	}
 
 	public function page()

@@ -45,7 +45,7 @@
                     <?php
                     if ($role == 1) { ?>
                          <li>
-                        <a href="<?= base_url() . 'index.php/userManagement_controler/index' ?>"><i class="fa fa-user"></i> <span class="nav-label">User Management </span></a>
+                        <a href="<?= base_url() . 'index.php/usermanagement/index' ?>"><i class="fa fa-user"></i> <span class="nav-label">User Management </span></a>
                     </li>
                     <?php } ?>
 

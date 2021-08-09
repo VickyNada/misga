@@ -13,6 +13,9 @@
     <link href="<?= base_url(); ?>assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/animate.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
+
+    <link href="<?= base_url(); ?>assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/plugins/steps/jquery.steps.css" rel="stylesheet">
     
 
     <!-- JS -->

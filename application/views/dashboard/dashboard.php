@@ -1,7 +1,6 @@
 
 DASHBOARD 
 
-
 <script>
     $(document).ready(function() {
         var username = '<?php echo $this->session->userdata('username') ?>';

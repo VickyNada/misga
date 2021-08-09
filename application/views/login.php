@@ -2,23 +2,16 @@
     <div style="background-color:#f3f3f4 ; padding: 14px; width: 325px;border-radius: 20px;">
         <div>
             <div>
-
-                <!--  <h1 class="logo-name">Logo</h1> -->
-
                 <img src="<?= base_url(); ?>assets/img/design.png" class="logo-img" style="width: 229px; height: 239px;">
-
             </div>
-            <h3>Welcome to Warriors </h3>
-            
+            <h3>Welcome to Krish and Villa </h3>
+
             <?php if ($this->session->userdata('error')) { ?>
                 <div class="alert alert-danger alert-dismissable"><?php echo $this->session->userdata('error'); ?> </div>
             <?php $this->session->unset_userdata('error');
             } ?>
-       
-            <!--  <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
-           </p> -->
 
-            <p>Login in. To see it in action.</p>
+            <p>Login</p>
             <form class="m-t" role="form" method="post" action="<?= base_url() . 'index.php/login/login' ?>" id="form">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Username" required="" name="username">
@@ -32,14 +25,38 @@
 
                 <a href="forget.php"><small>Forgot password?</small></a>
                 <p class="text-muted text-center"><small>Do not have an account?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>
+                <!-- <a class="btn btn-sm btn-white btn-block" href="<?= base_url() . 'index.php/registration' ?>">Create an account</a> -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
+                    Create an account
+                </button>
             </form>
-            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
         </div>
     </div>
 </div>
 
-<!-- <script>
+<div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated flipInY">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Select</h4>
+                <small class="font-bold">The User Account Type You Want To Create.</small>
+            </div>
+            <div class="modal-body">
+                <div style="margin:auto;">
+                    <button type="button" class="btn btn-outline btn-primary" onClick="redirect('1')">Customer</button>
+                    <button type="button" class="btn btn-outline btn-success" onClick="redirect('2')">Farmer</button>
+                    <button type="button" class="btn btn-outline btn-warning" onClick="redirect('3')">Delivery Person</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
     $(document).ready(function() {
         jQuery.validator.addMethod("customEmail", function(value, element) {
             return this.optional(element) ||
@@ -53,8 +70,7 @@
             rules: {
                 password: {
                     required: true,
-                    minlength: 5,
-                    maxlength: 12
+                    minlength: 0,
                 },
 
                 username: {
@@ -67,6 +83,18 @@
                 form.submit();
             }
         });
-    });
-</script> -->
 
+    });
+
+    function redirect(loc) {
+        var url = '#'
+        if (loc == 1) {
+            url = "<?= base_url() . 'index.php/registration/reg_cus' ?>";
+        } else if (loc == 2) {
+            url = "<?= base_url() . 'index.php/registration/reg_far' ?>";
+        } else if (loc == 3) {
+            url = "<?= base_url() . 'index.php/registration/reg_del' ?>";
+        }
+        window.location.href = url;
+    }
+</script>
