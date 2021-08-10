@@ -5,7 +5,6 @@
                 <img src="<?= base_url(); ?>assets/img/design.png" class="logo-img" style="width: 229px; height: 239px;">
             </div>
             <h3>Welcome to Krish and Villa </h3>
-
             <?php if ($this->session->userdata('error')) { ?>
                 <div class="alert alert-danger alert-dismissable"><?php echo $this->session->userdata('error'); ?> </div>
             <?php $this->session->unset_userdata('error');

@@ -28,7 +28,6 @@ class Login extends CI_Controller
 		$this->form_validation->set_rules('password', 'password', "trim|required");
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->session->set_userdata('error', ' The Username or password are invalid!');
 			redirect(URL_BASE . 'login');
 		} else {
 			$result = $this->login_model->loginAuthenticate($username, $password);

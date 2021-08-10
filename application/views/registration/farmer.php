@@ -15,7 +15,7 @@
                 </div>
                 <div class="ibox-content">
                     <h2>
-                        <strong>Customer Registration Form</strong>
+                        <strong>Farmer Registration Form</strong>
                     </h2>
                     <p>
                         Please complete all steps to prceed with registration
@@ -27,7 +27,7 @@
                     } ?>
 
                     <?php $attributes = array('id' => 'form', 'class' => 'wizard-big', 'method' => 'post');
-                    echo form_open_multipart(base_url() . 'index.php/registration/reg_customer', $attributes); ?>
+                    echo form_open_multipart(base_url() . 'index.php/registration/reg_farmer', $attributes); ?>
 
                     <h1>Account</h1>
                     <fieldset>
@@ -50,7 +50,7 @@
                             <div class="col-lg-4">
                                 <div class="text-center">
                                     <div style="margin-top: 20px">
-                                <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
+                                        <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                     </fieldset>
                     <h1>Profile</h1>
                     <fieldset>
-                        <h2>Profile Information</h2>
+                        <!-- <h2>Profile Information</h2> -->
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -71,8 +71,8 @@
                                     <input id="nic" name="nic" type="text" class="form-control required">
                                 </div>
                                 <div class="form-group">
-                                    <label>Delivery Address *</label>
-                                    <input id="daddress" name="daddress" type="text" class="form-control required">
+                                    <label>Contact number*</label>
+                                    <input id="contact1" name="contact1" type="text" class="form-control required">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -81,28 +81,12 @@
                                     <input id="lastname" name="lastname" type="text" class="form-control required">
                                 </div>
                                 <div class="form-group">
-                                    <label>Billing Address *</label>
+                                    <label> Address *</label>
                                     <input id="baddress" name="baddress" type="text" class="form-control required">
                                 </div>
                                 <div class="form-group">
                                     <label>City *</label>
                                     <input id="city" name="city" type="text" class="form-control required">
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <h1>Contact Details</h1>
-                    <fieldset>
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="form-group">
-                                    <label>Contact number *</label>
-                                    <input id="contact1" name="contact1" type="text" class="form-control required">
-                                </div>
-                                <div class="form-group">
-                                    <label>Whatsapp number </label>
-                                    <input id="contact2" name="contact2" type="text" class="form-control required">
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -113,6 +97,81 @@
                             </div>
                         </div>
                     </fieldset>
+
+                    <h1>Farm Details</h1>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Farm Name *</label>
+                                    <input id="farmname" name="farmname" type="text" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label>Area of farm * </label>
+                                    <input id="area" name="area" type="text" class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Farn address *</label>
+                                    <input id="daddress" name="daddress" type="text" class="form-control required">
+                                </div>
+                                <div class="form-group">
+                                    <label>Farm Contact *</label>
+                                    <input id="contact2" name="contact2" type="text" class="form-control required">
+                                </div>
+
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <h1>Farm Photos</h1>
+                    <fieldset>
+                        <div class="row">
+                        <div class="col-lg-12">
+                                <h4>Please upload upto 5 photos of your farm </h4>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Picture 1 *</label>
+                                    <input type="file" id="farmpic1" name="farmpic1" />
+                                </div>
+                                </div>
+                                <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Picture 2 *</label>
+                                    <input type="file" id="farmpic2" name="farmpic2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Picture 3 *</label>
+                                    <input type="file" id="farmpic3" name="farmpic3" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Picture 4 *</label>
+                                    <input type="file" id="farmpic4" name="farmpic4" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Picture 5 *</label>
+                                    <input type="file" id="farmpic5" name="farmpic5" />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
                     </form>
                 </div>
             </div>
@@ -158,7 +217,7 @@
                 }
 
                 // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
-                if (currentIndex === 2 && priorIndex === 3) {
+                if (currentIndex === 2 && priorIndex === 4) {
                     $(this).steps("previous");
                 }
             },
@@ -179,6 +238,8 @@
                 form.submit();
             }
 
+
+
         }).validate({
             errorPlacement: function(error, element) {
                 element.before(error);
@@ -186,6 +247,11 @@
             rules: {
                 confirm: {
                     equalTo: "#password",
+                },
+
+                email: {
+                    email: true,
+
                 },
 
                 nic: {
@@ -197,13 +263,19 @@
                 contact1: {
                     number: true,
                     minlength: 10,
-                    maxlength: 13,
+                    maxlength: 10,
+                },
+
+                area: {
+                    number: true,
+                    minlength: 1,
+                    maxlength: 3,
                 },
 
                 contact2: {
                     number: true,
                     minlength: 10,
-                    maxlength: 13,
+                    maxlength: 10,
                 },
                 profilepic: {
                     extension: "gif|jpg|png"
