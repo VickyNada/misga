@@ -16,6 +16,20 @@ class login_model extends CI_model
         }
     }
 
+    function loginAuthenticateConsumer($username, $password)
+    {
+        $this->db->where('email =', $username);
+        $this->db->where('password =', md5($password));
+        $Query = $this->db->get('consumers');
+        
+        if ($Query->num_rows() == 1) {
+            return $Query->result_array();
+        }else{
+            return [];
+        }
+    }
+
+
     function getUserDataByEmail($email){
         return $this-> db->where('email',$email)->get('users')->row();
        

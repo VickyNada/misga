@@ -10,6 +10,7 @@
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                                 <span class="block m-t-xs font-bold"> <?php echo ($userInfo[0]->first_name . " " . $userInfo[0]->last_name); ?></span>
+
                                 <?php
                                 $role = ($userInfo[0]->role);
                                 if ($role == 1) {
@@ -24,33 +25,34 @@
                                 <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
                                 <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
                                 <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="<?= base_url() . 'index.php/login/logout' ?>">Logout</a></li>
+
                             </ul>
                         </div>
                         <div class="logo-element">
                             IN+s
                         </div>
                     </li>
-                    <li>
-                        <a href="<?= base_url() . 'index.php/dashboard/index' ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard </span></a>
+                    <li id="dashboard_head">
+                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="<?= base_url() . 'index.php/dashboard/index' ?>" id="dashboard1">Dashboard </span></a></li>
+                            <li><a href="dashboard_2.html">Dashboard v.2</a></li>
+                        </ul>
                     </li>
-                    <!-- <?php
-                    if ($role == 1) { ?>
-                         <li>
-                        <a href="<?= base_url() . 'index.php/m_user/index' ?>"><i class="fa fa-user"></i> <span class="nav-label">User Management </span></a>
-                    </li>
-                    <?php } ?> -->
-                        
-                    <!-- access for usermanagement  -->
+
                     <?php
                     if ($role == 1) { ?>
-                         <li>
-                        <a href="<?= base_url() . 'index.php/usermanagement/index' ?>"><i class="fa fa-user"></i> <span class="nav-label">User Management </span></a>
+                    <li>
+                        <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">User Management</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="<?= base_url() . 'index.php/usermanagement/index' ?>">General Users</a></li>
+                            <li><a href="<?= base_url() . 'index.php/consumer/customer' ?>">Customer</a></li>
+                            <li><a href="<?= base_url() . 'index.php/consumer/index' ?>">Farmer</a></li>
+                            <li><a href="<?= base_url() . 'index.php/consumer/delivery' ?>">Delivery Users</a></li>
+                        </ul>
                     </li>
                     <?php } ?>
-
                 </ul>
-
             </div>
         </nav>
 
@@ -67,7 +69,7 @@
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
-                            <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to Krish Villa Organic.</span>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -165,9 +167,15 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="<?= base_url() . 'index.php/login/logout' ?>">
-                                <i class="fa fa-sign-out"></i> Log out
-                            </a>
+                            <?php if ($role == 1 || $role == 2) { ?>
+                                <a href="<?= base_url() . 'index.php/adminlogin/logout' ?>">
+                                    <i class="fa fa-sign-out"></i> Log out
+                                </a>
+                            <?php } else { ?>
+                                <a href="<?= base_url() . 'index.php/login/logout' ?>">
+                                    <i class="fa fa-sign-out"></i> Log out
+                                </a>
+                            <?php } ?>
                         </li>
                     </ul>
 

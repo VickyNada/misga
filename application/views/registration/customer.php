@@ -50,7 +50,7 @@
                             <div class="col-lg-4">
                                 <div class="text-center">
                                     <div style="margin-top: 20px">
-                                <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
+                                        <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
                                     </div>
                                 </div>
                             </div>

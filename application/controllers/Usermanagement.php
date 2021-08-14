@@ -34,12 +34,12 @@ class Usermanagement extends CI_Controller
 				$userrole = "Standard User";
 				$batchStyle = 'badge badge-success';
 			}
-			if ($user->active_status == 0) {
-				$status = "Active";
+			if ($user->active_status == 1) {
+				$status = "Blocked";
 				$btnclass = "btn btn-danger btn-rounded";
 				$faclass = "fa fa-lock";
 			} else {
-				$status = "Blocked";
+				$status = "Active";
 				$btnclass = "btn btn-primary btn-rounded";
 				$faclass = "fa fa-unlock-alt";
 			}

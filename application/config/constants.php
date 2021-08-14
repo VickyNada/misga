@@ -84,4 +84,9 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-define('URL_BASE','http://localhost/misga/index.php/');
+define('URL_BASE','http://localhost/krishandvila/index.php/');
+define('ADMIN','1');
+define('STANDARDUSER','2');
+define('CUSTOMER','3');
+define('FARMER','4');
+define('DELIVERYRIDER','5');

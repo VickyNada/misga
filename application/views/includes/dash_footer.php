@@ -30,6 +30,9 @@
 <script src="<?= base_url(); ?>assets/js/plugins/dataTables/datatables.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
 
+ <!-- blueimp gallery -->
+ <script src="<?= base_url(); ?>assets/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
+
 </body>
 
 </html>

@@ -15,7 +15,7 @@
                 </div>
                 <div class="ibox-content">
                     <h2>
-                        <strong>Delivery Registration Form</strong>
+                        <strong>Delivery User Registration Form</strong>
                     </h2>
                     <p>
                         Please complete all steps to prceed with registration
@@ -113,7 +113,7 @@
                                         <option value="Trucks">Trucks</option>
                                         <option value="three wheeler">Three wheeler</option>
                                         <option value="others">Others</option>
-                                        
+
                                     </select>
                                 </div>
                             </div>
@@ -135,82 +135,79 @@
                                         <option value="Toyota">Toyota</option>
                                         <option value="TVS">TVS</option>
                                         <option value="Yamaha">Yamaha</option>
-                                        <option value="Others">Others</option>       
+                                        <option value="Others">Others</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>Vehicle Model * </label>
-                                <input id="vmodel" name="vmodel" type="text" class="form-control required">
-                            </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>Registration Number *</label>
-                                <input id="regnumber" name="regnumber" type="text" class="form-control required">
-                            </div>
+                                <div class="form-group">
+                                    <label>Vehicle Model * </label>
+                                    <input id="vmodel" name="vmodel" type="text" class="form-control required">
+                                </div>
                             </div>
 
                             <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>Driving License Number*</label>
-                                <input id="license" name="license" type="text" class="form-control required">
-                            </div>
+                                <div class="form-group">
+                                    <label>Registration Number *</label>
+                                    <input id="regnumber" name="regnumber" type="text" class="form-control required">
+                                </div>
                             </div>
 
                             <div class="col-lg-6">
-                            <div class="form-group">
-                            <label>Driving License Expiry Date*</label>
-                            <input id="expiry" name="expiry" type="date" class="form-control required">
-                        </div>
-                        </div>
-                     </div>
-            
-                </fieldset>
-                
-                <h1>Farm Photos</h1>
-                <fieldset>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Driving License*</label>
-                                <input type="file" id="profilepic" name="profilepic" />
+                                <div class="form-group">
+                                    <label>Driving License Number*</label>
+                                    <input id="license" name="license" type="text" class="form-control required">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Driving License Expiry Date*</label>
+                                    <input id="expiry" name="expiry" type="date" class="form-control required">
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Revenue license*</label>
-                                <input type="file" id="profilepic" name="profilepic" />
+                    </fieldset>
+
+                    <h1>Vehicle Documents</h1>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Driving License*</label>
+                                    <input type="file" id="dril" name="dril" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Revenue license*</label>
+                                    <input type="file" id="revl" name="revl" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Insurance *</label>
+                                    <input type="file" id="ins" name="ins" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Vehicle Books *</label>
+                                    <input type="file" id="vb" name="vb" />
+                                </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Insurance *</label>
-                                <input type="file" id="profilepic" name="profilepic" />
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Vehicle Books *</label>
-                                <input type="file" id="profilepic" name="profilepic" />
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-
-                
-
-                </form>
+                    </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <script>
@@ -271,8 +268,8 @@
                 // Submit form input
                 form.submit();
             }
-        
-            
+
+
 
         }).validate({
             errorPlacement: function(error, element) {
@@ -284,7 +281,7 @@
                 },
 
                 email: {
-                    email: true, 
+                    email: true,
                 },
 
                 nic: {
@@ -312,11 +309,11 @@
                 },
 
                 vtype: {
-                    required: true,            
+                    required: true,
                 },
 
                 mname: {
-                    required: true,            
+                    required: true,
                 },
 
                 profilepic: {
@@ -331,11 +328,9 @@
         });
     });
 
-    function redirectLogin(){
+    function redirectLogin() {
         <?php $this->session->unset_userdata('error') ?>;
         var url = "<?= base_url() . 'index.php/login/login' ?>";
         window.location.href = url;
     }
-
-
 </script>
