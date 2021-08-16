@@ -43,6 +43,9 @@ class Login extends CI_Controller
 					} else {
 						redirect(URL_BASE . 'login/reset_password');
 					}
+				} else if($result[0]['active_status'] == 2) {
+					$this->session->set_userdata('error', ' This account under verification');
+					redirect(URL_BASE . 'login');
 				} else {
 					$this->session->set_userdata('error', ' This account restriected by admin');
 					redirect(URL_BASE . 'login');

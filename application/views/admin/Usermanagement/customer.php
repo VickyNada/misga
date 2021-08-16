@@ -39,10 +39,12 @@
                                 <th>Last Name</th>
                                 <th>Email</th>
                                 <th>Delivery</th>
+                                <th>Status</th>
                                 <th>Contact</th>
+                                
                                 <th>Edit User</th>
                                 <th id="deleteSort">Delete User</th>
-                                <th>User Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="tableBody">

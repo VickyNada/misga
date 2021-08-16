@@ -23,9 +23,9 @@
                 </div>
                 <div>
                     <div class="ibox-content profilepic-profilepage">
-                        <img alt="image" src="<?= base_url() . $consumerInfo[0]->picture?>">
+                        <img alt="image" src="<?= base_url() . $consumerInfo[0]->picture ?>" style="width: 128px;height:128px;border:1px solid;"></a>
                     </div>
-                    <div class="ibox-content profile-content" style=" padding-bottom: 87px;">
+                    <div class="ibox-content profile-content" style=" padding-bottom: 160px;">
                         <h5>Full Name</h5>
                         <h4><strong><?= $consumerInfo[0]->first_name . ' ' . $consumerInfo[0]->last_name; ?> </strong></h4>
                         <br>
@@ -35,11 +35,11 @@
                         <h5>Billing Address</h5>
                         <p><i class="fa fa-map-marker">&nbsp;</i><?= $consumerInfo[0]->Billing; ?></p>
                         <h5>
-                        <h5>Farm Address</h5>
-                        <p><i class="fa fa-map-marker">&nbsp;</i><?= $consumerInfo[0]->Delivery; ?></p>
-                        <h5>Contact</h5>
-                        <p><i class="fa fa-map-marker">&nbsp;</i><?= $consumerInfo[0]->contact1; ?></p>
-                        <br>
+                            <h5>Farm Address</h5>
+                            <p><i class="fa fa-map-marker">&nbsp;</i><?= $consumerInfo[0]->Delivery; ?></p>
+                            <h5>Contact</h5>
+                            <p><i class="fa fa-map-marker">&nbsp;</i><?= $consumerInfo[0]->contact1; ?></p>
+                            <br>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,13 @@
                             <div class="col-lg-10"><input type="text" name="city" id="city" value="<?= $consumerInfo[0]->city; ?>" placeholder="City" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group row">
+                           
+                        <div class="form-group row"><label class="col-lg-2 col-form-label">Crops </label>
+                            <div class="col-lg-10">
+                            <input class="tagsinput form-control" type="text" id="showcrop" value="Amsterdam,Washington,Sydney,Beijing,Cairo" />
+                            </div>
+                        </div>
+                       <div class="form-group row">
                             <div class="col-lg-offset-2 col-lg-10">
                                 <button type="submit" class="btn btn-sm btn-primary" id="updatebtn">Update Details</button>
                             </div>
@@ -109,34 +115,78 @@
         </div>
     </div>
 </div>
-<div class="wrapper wrapper-content">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox ">
-                    <div class="ibox-content">
-                        <h2>Farm Images</h2>
-                        <div class="lightBoxGallery">
-                            <?php foreach ($farmImages as $image) { ?>
-                                <a href="<?= base_url() . $image->picture; ?>" title="Farm images " data-gallery=""><img src="<?= base_url() . $image->picture; ?>" style="width: 200px;height:150px;border:1px solid;"></a>
-                            <?php } ?>
-                            <div id="blueimp-gallery" class="blueimp-gallery">
-                                <div class="slides"></div>
-                                <h3 class="title"></h3>
-                                <a class="prev">‹</a>
-                                <a class="next">›</a>
-                                <a class="close">×</a>
-                                <a class="play-pause"></a>
-                                <ol class="indicator"></ol>
-                            </div>
+<!-- <div class="wrapper wrapper-content" style="margin-top: -63px;">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Crops details </h5>
+                </div>
+                <div class="ibox-content">
+                    <p class="font-bold">
+                        Selected Crops
+                    </p>
+                    <input class="tagsinput form-control" type="text" id="showcrop" value="Amsterdam,Washington,Sydney,Beijing,Cairo" />
+                    <button class="btn btn-primary btn-block" onclick="addcrops()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Farmer image -->
+
+<div class="wrapper wrapper-content" style="margin-top: -63px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <h2>Farm Images</h2>
+                    <div class="lightBoxGallery">
+                        <?php foreach ($farmImages as $image) { ?>
+                            <a href="<?= base_url() . $image->picture; ?>" title="Farm images " data-gallery=""><img src="<?= base_url() . $image->picture; ?>" style="width: 200px;height:150px;border:1px solid;"></a>
+                        <?php } ?>
+                        <div id="blueimp-gallery" class="blueimp-gallery">
+                            <div class="slides"></div>
+                            <h3 class="title"></h3>
+                            <a class="prev">‹</a>
+                            <a class="next">›</a>
+                            <a class="close">×</a>
+                            <a class="play-pause"></a>
+                            <ol class="indicator"></ol>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
 
 <script>
     $(document).ready(function() {
+
+        $('.tagsinput').tagsinput({
+            tagClass: 'label label-primary'
+        });
+
+        $('#tags-input').on('beforeItemAdd', function(event) {
+            var tag = event.item;
+            // Do some processing here
+
+            // if (!event.options || !event.options.preventPost) {
+            //     $.ajax('/ajax-url', ajaxData, function(response) {
+            //         if (response.failure) {
+            //             // Remove the tag since there was a failure
+            //             // "preventPost" here will stop this ajax call from running when the tag is removed
+            //             $('#tags-input').tagsinput('remove', tag, {
+            //                 preventPost: true
+            //             });
+            //         }
+            //     });
+            // }
+        });
 
         jQuery.validator.addMethod("customEmail", function(value, element) {
             return this.optional(element) ||
@@ -172,13 +222,13 @@
                 contact1: {
                     required: true,
                     number: true,
-                    minlength: 10,
+                    minlength: 9,
                     maxlength: 15,
                 },
                 contact2: {
                     required: true,
                     number: true,
-                    minlength: 10,
+                    minlength: 9,
                     maxlength: 15,
                 },
                 billing: {
@@ -209,7 +259,9 @@
                     'delivery': $('#delivery').val(),
                     'city': $('#city').val(),
                     'area': $('#area').val(),
-                };
+                    'tags' : $(".tagsinput").val()
+                    };
+
                 $.ajax({
                     method: "POST",
                     url: "<?= base_url() . 'index.php/consumer/updateConsumer' ?>",

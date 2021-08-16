@@ -52,6 +52,15 @@
                         </ul>
                     </li>
                     <?php } ?>
+                    <li>
+                        <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Inventory</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="<?= base_url() . 'index.php/inventory/index' ?>">Inventory Master</a></li>
+                            <li><a href="<?= base_url() . 'index.php/storage/index' ?>">Storage</a></li>
+                            <li><a href="<?= base_url() . 'index.php/unit/index' ?>">Unit of Measurement</a></li>
+                            <li><a href="<?= base_url() . 'index.php/category/index' ?>">Category</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>

@@ -23,7 +23,7 @@
                 </div>
                 <div>
                     <div class="ibox-content profilepic-profilepage">
-                        <img alt="image" src="<?= base_url() . $consumerInfo[0]->picture; ?>">
+                        <img alt="image" src="<?= base_url() . $consumerInfo[0]->picture; ?>" style="width: 128px;height:128px;border:1px solid;"></a>
                     </div>
                     <div class="ibox-content profile-content" style=" padding-bottom: 8px;">
                         <h5>Full Name</h5>

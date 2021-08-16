@@ -32,6 +32,8 @@
 
  <!-- blueimp gallery -->
  <script src="<?= base_url(); ?>assets/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
+ <!-- Tags Input -->
+ <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
 </body>
 

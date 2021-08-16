@@ -95,7 +95,8 @@ class Registration extends CI_Controller
 				'Delivery'	=> $_POST['daddress'],
 				'area'		=> $_POST['area'],
 				'contact2'	=> $_POST['contact2'],
-				'picture'	=> $config['upload_path'] . $config['file_name']
+				'picture'	=> $config['upload_path'] . $config['file_name'],
+				'active_status' => '2'
 			);
 
 			$this->form_validation->set_rules('email', 'email', 'required');
@@ -184,6 +185,7 @@ class Registration extends CI_Controller
 				'city'		=> $_POST['city'],
 				'expirydate'	=> $_POST['expiry'],
 				'picture'	=> $config['upload_path'] . $config['file_name'],
+				'active_status' => '2'
 			);
 
 			$this->form_validation->set_rules('email', 'email', 'required');

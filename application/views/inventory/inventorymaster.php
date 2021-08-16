@@ -46,7 +46,7 @@
                                 <th>Created Date</th>
                                 <!-- <th>Modified Date</th> -->
                                 <th>Created by</th>
-                           
+
                                 <th id="deleteSort">Action Item </th>
                             </tr>
                         </thead>
@@ -86,20 +86,35 @@
                     <small>Select the Unit of Measure </small>
                     <select class="form-control m-b" name="unit" id="unit">
                         <option value="0" selected='selected'>Please Select</option>
-                        <option value="1">Kilogram </option>
+                        <?php
+
+                        foreach ($unit as $row) {
+                            echo '<option > ' . $row["unitname"] . ' </option>';
+                        }
+                        ?>
+                        <!-- <option value="1">Kilogram </option>
                         <option value="2">Gram</option>
                         <option value="3">Bottle</option>
-                        <option value="4">liter</option>
+                        <option value="4">liter</option> -->
                     </select>
 
                     <div class="form-group"><label>Item name </label> <input type="text" placeholder="Enter Item name" id="itemname" name="itemname" class="form-control"></div>
 
                     <small>Select the Item Category </small>
                     <select class="form-control m-b" name="itemcategory" id="itemcategory">
-                        <option value="0" selected='selected'>Please Select Item Category </option>
+                    <option value="0" selected='selected'>Please Select Item Category </option>
+                        <?php
+
+                        foreach ($category as $row) {
+                            echo '<option > ' . $row["category"] . ' </option>';
+                        }
+                        ?>
+
+                        <!-- 
+                        
                         <option value="1">Flowers </option>
                         <option value="2">Fruits </option>
-                        <option value="3">Vegitables </option>
+                        <option value="3">Vegitables </option> -->
                     </select>
 
                     <small>Select the Item Store </small>
@@ -145,27 +160,44 @@
                 </div>
                 <div class="modal-body">
 
-                  
+
                     <input type="hidden" placeholder="id" id="editId" name="editId">
 
                     <div class="form-group"><label>Item Code </label> <input type="text" placeholder="Enter Item Code" id="edititemcode" name="edititemcode" class="form-control"></div>
                     <small>Select the Unit of Measure </small>
                     <select class="form-control m-b" name="editunit" id="editunit">
-                        <option value="0" selected='selected'>Please Select</option>
+                    <option value="0" selected='selected'>Please Select</option>
+                        <?php
+
+                        foreach ($unit as $row) {
+                            echo '<option > ' . $row["unitname"] . ' </option>';
+                        }
+                        ?>
+
+                        <!-- 
                         <option value="1">Kilogram </option>
                         <option value="2">Gram</option>
                         <option value="3">Bottle</option>
-                        <option value="4">liter</option>
+                        <option value="4">liter</option> -->
                     </select>
 
                     <div class="form-group"><label>Item name </label> <input type="text" placeholder="Enter Item name" id="edititemname" name="edititemname" class="form-control"></div>
 
                     <small>Select the Item Category </small>
                     <select class="form-control m-b" name="edititemcategory" id="edititemcategory">
-                        <option value="0" selected='selected'>Please Select Item Category </option>
+                    <option value="0" selected='selected'>Please Select Item Category </option>
+                        <?php
+
+                        foreach ($category as $row) {
+                            echo '<option > ' . $row["category"] . ' </option>';
+                        }
+                        ?>
+
+
+                        <!-- 
                         <option value="1">Flowers </option>
                         <option value="2">Fruits </option>
-                        <option value="3">Vegitables </option>
+                        <option value="3">Vegitables </option> -->
                     </select>
 
                     <small>Select the Item Store </small>
@@ -322,17 +354,17 @@
                     min: "Please select a value for itemstatus",
                 },
             },
-         
+
             submitHandler: function(form) {
                 var data = {
-                    
-                    'editId'        : $('#editId').val(),
-                    'itemname'      : $('#edititemname').val(),
-                    'itemcategory'  : $('#edititemcategory').val(),
-                    'store'         : $('#editstore').val(),
-                    'adddetails'    : $('#editadddetails').val(),
-                    'unit'          : $('#editunit').val(),
-                    'itemstatus'    : $('#edititemstatus').val(),
+
+                    'editId': $('#editId').val(),
+                    'itemname': $('#edititemname').val(),
+                    'itemcategory': $('#edititemcategory').val(),
+                    'store': $('#editstore').val(),
+                    'adddetails': $('#editadddetails').val(),
+                    'unit': $('#editunit').val(),
+                    'itemstatus': $('#edititemstatus').val(),
                 };
                 $.ajax({
                     method: "POST",
@@ -341,7 +373,7 @@
                     success: function(response) {
                         $('#editItem').modal('hide');
                         getAllProductData();
-                        swal ( "Success" ,  "Item Updated successfully!" ,  "success" )
+                        swal("Success", "Item Updated successfully!", "success")
                     }
                 })
             }
@@ -394,6 +426,7 @@
             });
         });
     }
+
     function resetAddFormValues() {
         $('#itemname').val('');
         $('#itemcategory').val('0');
@@ -423,11 +456,11 @@
                 $('#edititemstatus').val(data[0]['Item_status']);
             }
 
-            
+
         });
     }
-    
-   function page() {
+
+    function page() {
         $.ajax({
             url: "<?= base_url() . 'index.php/inventory/page' ?>",
             success: function(result) {

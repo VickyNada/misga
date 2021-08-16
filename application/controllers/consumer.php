@@ -53,10 +53,20 @@ class consumer extends CI_Controller
 					$status = "Blocked";
 					$btnclass = "btn btn-danger btn-rounded";
 					$faclass = "fa fa-lock";
-				} else {
+					$batchStyle = 'badge badge-danger';		
+				}else
+				if ($user->active_status == 2) {
+					$status = "Penidng";
+					$btnclass = "btn btn-info btn-rounded";
+					$faclass = "fa fa-lock";
+					$batchStyle = 'badge badge-info';
+				
+					}else{
+
 					$status = "Active";
 					$btnclass = "btn btn-primary btn-rounded";
 					$faclass = "fa fa-unlock-alt";
+					$batchStyle = 'badge badge-primary';	
 				}
 
 				$editUrl = URL_BASE . "consumer/editConsumer?userId=$user->id&roleId=$roleId";
@@ -66,10 +76,15 @@ class consumer extends CI_Controller
                 <td>' . $user->farm_name . '</td>
 				<td>' . $user->first_name . " " . $user->last_name . '</td>
 	            <td>' . $user->email . '</td>
-                <td>' . $user->contact1 . "<br>" . $user->contact2 . '</td>
+				<td><span class="'.$batchStyle.'">' . $status . '</span></td>
+				<td>' . $user->contact1 . '</td>
+				<td>' . $user->contact2 . '</td>
+				
+				
 				<td><a class="btn btn-warning btn-rounded" id="editUserBtn" href="' . $editUrl . '" ><i class="fa fa-pencil-square-o"></i> View</a></td>
 				<td><a class="btn btn-danger btn-rounded" id="deleteUserBtn" onclick="deleteUser(' . $user->id . ') " href="#" ><i class="fa fa-trash-o"></i> Delete</a></td>
-				<td><div style="width: 40%; float:left">' . $status . '</div><div style="width: 60%; float:left"><a class="' . $btnclass . '" id="blockUserBtn" onclick="blockUser(' . $user->id . ',' . $user->active_status . ') " href="#" ><i class="' . $faclass . '" aria-hidden="true"></i></a></div></td>
+				<td><div style="width: 60%; float:left"><a class="' . $btnclass . '" id="blockUserBtn" onclick="blockUser(' . $user->id . ',' . $user->active_status . ') " href="#" ><i class="' . $faclass . '" aria-hidden="true"></i></a></div></td>
+				
 				</tr>';
 
 				$dataString2 .= '
@@ -79,10 +94,12 @@ class consumer extends CI_Controller
 				<td>' .  $user->last_name . '</td>
 	            <td>' . $user->email . '</td>
 				<td>' . $user->Delivery . '</td>
+				<td><span class="'.$batchStyle.'">' . $status . '</span></td>
                 <td>' . $user->contact1 . "<br>" . $user->contact2 . '</td>
+				
 				<td><a class="btn btn-warning btn-rounded" id="editUserBtn" href="' . $editUrl . '" ><i class="fa fa-pencil-square-o"></i> View</a></td>
 				<td><a class="btn btn-danger btn-rounded" id="deleteUserBtn" onclick="deleteUser(' . $user->id . ') " href="#" ><i class="fa fa-trash-o"></i> Delete</a></td>
-				<td><div style="width: 40%; float:left">' . $status . '</div><div style="width: 60%; float:left"><a class="' . $btnclass . '" id="blockUserBtn" onclick="blockUser(' . $user->id . ',' . $user->active_status . ') " href="#" ><i class="' . $faclass . '" aria-hidden="true"></i></a></div></td>
+				<td><div style="width: 60%; float:left"><a class="' . $btnclass . '" id="blockUserBtn" onclick="blockUser(' . $user->id . ',' . $user->active_status . ') " href="#" ><i class="' . $faclass . '" aria-hidden="true"></i></a></div></td>
 				</tr>';
 
 				$dataString3 .= '
@@ -91,10 +108,12 @@ class consumer extends CI_Controller
 				<td>' . $user->first_name . '</td>
 				<td>' .  $user->last_name . '</td>
 	            <td>' . $user->email . '</td>
+				<td><span class="'.$batchStyle.'">' . $status . '</span></td>
                 <td>' . $user->contact1 . '</td>
+				
 				<td><a class="btn btn-warning btn-rounded" id="editUserBtn" href="' . $editUrl . '" ><i class="fa fa-pencil-square-o"></i> View</a></td>
 				<td><a class="btn btn-danger btn-rounded" id="deleteUserBtn" onclick="deleteUser(' . $user->id . ') " href="#" ><i class="fa fa-trash-o"></i> Delete</a></td>
-				<td><div style="width: 40%; float:left">' . $status . '</div><div style="width: 60%; float:left"><a class="' . $btnclass . '" id="blockUserBtn" onclick="blockUser(' . $user->id . ',' . $user->active_status . ') " href="#" ><i class="' . $faclass . '" aria-hidden="true"></i></a></div></td>
+				<td><div style="width: 60%; float:left"><a class="' . $btnclass . '" id="blockUserBtn" onclick="blockUser(' . $user->id . ',' . $user->active_status . ') " href="#" ><i class="' . $faclass . '" aria-hidden="true"></i></a></div></td>
 				</tr>';
 			}
 		}
@@ -167,6 +186,9 @@ class consumer extends CI_Controller
 				'city'		=> $_POST['city'],
 				'area'		=> $_POST['area'],
 			);
+
+			$tags = explode(',',$_POST['tags']);
+			var_dump($tags);
 		}
 		if ($_POST['role'] == DELIVERYRIDER) {
 			$data = array(
@@ -184,7 +206,7 @@ class consumer extends CI_Controller
 			);
 		}
 
-		$result = $this->mcrud->updateDataByForm('consumers', $data, $id);
+		// $result = $this->mcrud->updateDataByForm('consumers', $data, $id);
 	}
 
 
@@ -206,7 +228,7 @@ class consumer extends CI_Controller
 	public function blockUserData()
 	{
 		$id = array('id' => $_GET['id']);
-		if ($_GET['status'] == 1) {
+		if ($_GET['status'] == 1|| $_GET['status'] == 2)  {
 			$new_Status = 0;
 		} else {
 			$new_Status = 1;

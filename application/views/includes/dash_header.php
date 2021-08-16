@@ -16,6 +16,7 @@
     <link href="<?= base_url(); ?>assets/css/custom-style.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/plugins/footable/footable.core.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
 
       <!-- Sweet Alert -->
       <link href="<?= base_url(); ?>assets/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
@@ -24,6 +25,7 @@
     <script src="<?= base_url(); ?>assets/js/jquery-3.1.1.min.js"></script>
 
     <link href="<?= base_url(); ?>assets/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+
 
         
 </head>

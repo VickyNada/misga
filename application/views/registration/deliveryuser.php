@@ -164,7 +164,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Driving License Expiry Date*</label>
-                                    <input id="expiry" name="expiry" type="date" class="form-control required">
+                                    <input id="expiry" name="expiry" type="date" min="<?=date("m/d/Y"); ?>" class="form-control required">
                                 </div>
                             </div>
                         </div>

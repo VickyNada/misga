@@ -8,15 +8,20 @@ class Inventory extends CI_Controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->model('mcrud');
+       
     }
 
     public function index()
     {
+        $this->load->model('inventory_model');
+        $dataArray["category"] = $this->inventory_model->getallcategory();
+        $dataArray["unit"] = $this->inventory_model->getallunit();
+       
         $userid = $this->session->userdata('userid');
         $data["userInfo"] = $this->mcrud->getDataById('users', $userid, 'id');
         $this->load->view('includes/dash_header');
         $this->load->view('includes/navigation', $data);
-        $this->load->view('inventory/inventorymaster');
+        $this->load->view('inventory/inventorymaster',$dataArray);
         $this->load->view('includes/dash_footer');
     }
     public function getAllProductData()
@@ -85,7 +90,7 @@ class Inventory extends CI_Controller
 
 		$id = array('id' => $_GET['id']);
 		$data = array('delete_status' => 1);
-		$data['itemDelete'] = $this->mcrud->updateDataByForm('inventory_master', $data, $id);
+		$data['unitDelete'] = $this->mcrud->updateDataByForm('inventory_master', $data, $id);
 		redirect(URL_BASE . 'inventory');
 	}
 
@@ -111,6 +116,8 @@ class Inventory extends CI_Controller
 	{
 		$this->load->view('includes/page');
 	}
+
+    
 
 }
 
