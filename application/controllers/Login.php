@@ -13,9 +13,17 @@ class Login extends CI_Controller
 	}
 
 	public function index()
-	{
+	{	
+		
+		if(isset($_GET['roleid'])) {
+			$roleid = $_GET['roleid'];
+		} else {
+			$roleid = '';
+		}
+		
+		$data['role'] = $roleid ;
 		$this->load->view('includes/login_header');
-		$this->load->view('login');
+		$this->load->view('login',$data);
 		$this->load->view('includes/login_footer');
 	}
 
@@ -23,6 +31,9 @@ class Login extends CI_Controller
 	{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
+		$roleid	  = $this->input->post('role');
+		
+
 
 		$this->form_validation->set_rules('username', 'username', "trim|required");
 		$this->form_validation->set_rules('password', 'password', "trim|required");
@@ -30,7 +41,7 @@ class Login extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			redirect(URL_BASE . 'login');
 		} else {
-			$result = $this->login_model->loginAuthenticateConsumer($username, $password);
+			$result = $this->login_model->loginAuthenticateConsumer($username, $password,$roleid);
 
 			if (count($result) == 1) {
 

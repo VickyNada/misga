@@ -40,11 +40,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Password *</label>
-                                    <input id="password" name="password" type="text" class="form-control required">
+                                    <input id="password" name="password" type="password" class="form-control required">
                                 </div>
                                 <div class="form-group">
                                     <label>Confirm Password *</label>
-                                    <input id="confirm" name="confirm" type="text" class="form-control required">
+                                    <input id="confirm" name="confirm" type="password" class="form-control required">
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -164,7 +164,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Driving License Expiry Date*</label>
-                                    <input id="expiry" name="expiry" type="date" min="<?=date("m/d/Y"); ?>" class="form-control required">
+                                    <input id="expiry" name="expiry" type="date" min="<?= date("m/d/Y"); ?>" class="form-control required">
                                 </div>
                             </div>
                         </div>
@@ -212,125 +212,133 @@
 
 <script>
     $(document).ready(function() {
-        $("#wizard").steps();
-        $("#form").steps({
-            bodyTag: "fieldset",
-            onStepChanging: function(event, currentIndex, newIndex) {
-                // Always allow going backward even if the current step contains invalid fields!
-                if (currentIndex > newIndex) {
-                    return true;
-                }
+                $("#wizard").steps();
+                $("#form").steps({
+                    bodyTag: "fieldset",
+                    onStepChanging: function(event, currentIndex, newIndex) {
+                        // Always allow going backward even if the current step contains invalid fields!
+                        if (currentIndex > newIndex) {
+                            return true;
+                        }
 
-                // Forbid suppressing "Warning" step if the user is to young
-                if (newIndex === 3 && Number($("#age").val()) < 18) {
-                    return false;
-                }
+                        // Forbid suppressing "Warning" step if the user is to young
+                        if (newIndex === 3 && Number($("#age").val()) < 18) {
+                            return false;
+                        }
 
-                var form = $(this);
+                        var form = $(this);
 
-                // Clean up if user went backward before
-                if (currentIndex < newIndex) {
-                    // To remove error styles
-                    $(".body:eq(" + newIndex + ") label.error", form).remove();
-                    $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
-                }
+                        // Clean up if user went backward before
+                        if (currentIndex < newIndex) {
+                            // To remove error styles
+                            $(".body:eq(" + newIndex + ") label.error", form).remove();
+                            $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                        }
 
-                // Disable validation on fields that are disabled or hidden.
-                form.validate().settings.ignore = ":disabled,:hidden";
+                        // Disable validation on fields that are disabled or hidden.
+                        form.validate().settings.ignore = ":disabled,:hidden";
 
-                // Start validation; Prevent going forward if false
-                return form.valid();
-            },
-            onStepChanged: function(event, currentIndex, priorIndex) {
-                // Suppress (skip) "Warning" step if the user is old enough.
-                if (currentIndex === 2 && Number($("#age").val()) >= 18) {
-                    $(this).steps("next");
-                }
+                        // Start validation; Prevent going forward if false
+                        return form.valid();
+                    },
+                    onStepChanged: function(event, currentIndex, priorIndex) {
+                        // Suppress (skip) "Warning" step if the user is old enough.
+                        if (currentIndex === 2 && Number($("#age").val()) >= 18) {
+                            $(this).steps("next");
+                        }
 
-                // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
-                if (currentIndex === 2 && priorIndex === 4) {
-                    $(this).steps("previous");
-                }
-            },
-            onFinishing: function(event, currentIndex) {
-                var form = $(this);
+                        // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                        if (currentIndex === 2 && priorIndex === 4) {
+                            $(this).steps("previous");
+                        }
+                    },
+                    onFinishing: function(event, currentIndex) {
+                        var form = $(this);
 
-                // Disable validation on fields that are disabled.
-                // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
-                form.validate().settings.ignore = ":disabled";
+                        // Disable validation on fields that are disabled.
+                        // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                        form.validate().settings.ignore = ":disabled";
 
-                // Start validation; Prevent form submission if false
-                return form.valid();
-            },
-            onFinished: function(event, currentIndex) {
-                var form = $(this);
+                        // Start validation; Prevent form submission if false
+                        return form.valid();
+                    },
+                    onFinished: function(event, currentIndex) {
+                        var form = $(this);
 
-                // Submit form input
-                form.submit();
+                        // Submit form input
+                        form.submit();
+                    }
+
+
+
+                }).validate({
+                        errorPlacement: function(error, element) {
+                            element.before(error);
+                        },
+                        rules: {
+                                email: {
+                                    email: true,
+                                },
+                                confirm: {
+                                    equalTo: "#password",
+                                },
+
+                                password: {
+                                    minlength: 5,
+                                    maxlength: 15,
+                                },
+
+                                email: {
+                                    email: true,
+                                },
+
+                                nic: {
+                                    number: true,
+                                    minlength: 9,
+                                    maxlength: 12,
+                                },
+
+                                contact1: {
+                                    number: true,
+                                    minlength: 10,
+                                    maxlength: 10,
+                                },
+
+                                area: {
+                                    number: true,
+                                    minlength: 1,
+                                    maxlength: 3,
+                                },
+
+                                contact2: {
+                                    number: true,
+                                    minlength: 10,
+                                    maxlength: 10,
+                                },
+
+                                vtype: {
+                                    required: true,
+                                },
+
+                                mname: {
+                                    required: true,
+                                },
+
+                                profilepic: {
+                                    extension: "gif|jpg|png"
+                                },
+                            },
+                            messages: {
+                                profilepic: {
+                                    extension: "Files should be in gif or jpg or png format"
+                                },
+                            }
+                        });
+                });
+
+            function redirectLogin() {
+                <?php $this->session->unset_userdata('error') ?>;
+                var url = "<?= base_url() . 'index.php/login/login' ?>";
+                window.location.href = url;
             }
-
-
-
-        }).validate({
-            errorPlacement: function(error, element) {
-                element.before(error);
-            },
-            rules: {
-                confirm: {
-                    equalTo: "#password",
-                },
-
-                email: {
-                    email: true,
-                },
-
-                nic: {
-                    number: true,
-                    minlength: 9,
-                    maxlength: 12,
-                },
-
-                contact1: {
-                    number: true,
-                    minlength: 10,
-                    maxlength: 10,
-                },
-
-                area: {
-                    number: true,
-                    minlength: 1,
-                    maxlength: 3,
-                },
-
-                contact2: {
-                    number: true,
-                    minlength: 10,
-                    maxlength: 10,
-                },
-
-                vtype: {
-                    required: true,
-                },
-
-                mname: {
-                    required: true,
-                },
-
-                profilepic: {
-                    extension: "gif|jpg|png"
-                },
-            },
-            messages: {
-                profilepic: {
-                    extension: "Files should be in gif or jpg or png format"
-                },
-            }
-        });
-    });
-
-    function redirectLogin() {
-        <?php $this->session->unset_userdata('error') ?>;
-        var url = "<?= base_url() . 'index.php/login/login' ?>";
-        window.location.href = url;
-    }
 </script>

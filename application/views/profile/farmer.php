@@ -58,16 +58,16 @@
                             <div class="col-lg-10"><input type="text" name="farmname" id="farmname" value="<?= $consumerInfo[0]->farm_name; ?>" placeholder="Email" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group row"><label class="col-lg-2 col-form-label">Email</label>
-                            <div class="col-lg-10"><input type="email" name="email" id="email" value="<?= $consumerInfo[0]->email; ?>" placeholder="Email" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row"><label class="col-lg-2 col-form-label">First Name</label>
+                            <div class="form-group row"><label class="col-lg-2 col-form-label">First Name</label>
                             <div class="col-lg-10"><input type="text" name="firstname" id="firstname" value="<?= $consumerInfo[0]->first_name; ?>" placeholder="First Name" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row"><label class="col-lg-2 col-form-label">Last Name</label>
                             <div class="col-lg-10"><input type="text" name="lastname" id="lastname" value="<?= $consumerInfo[0]->last_name; ?>" placeholder="Last Name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row"><label class="col-lg-2 col-form-label">Email</label>
+                            <div class="col-lg-10"><input type="email" name="email" id="email" value="<?= $consumerInfo[0]->email; ?>" placeholder="Email" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row"><label class="col-lg-2 col-form-label">NIC</label>

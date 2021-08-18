@@ -59,6 +59,7 @@
                             <li><a href="<?= base_url() . 'index.php/storage/index' ?>">Storage</a></li>
                             <li><a href="<?= base_url() . 'index.php/unit/index' ?>">Unit of Measurement</a></li>
                             <li><a href="<?= base_url() . 'index.php/category/index' ?>">Category</a></li>
+                            <li><a href="<?= base_url() . 'index.php/item/index' ?>">price</a></li>
                         </ul>
                     </li>
                 </ul>
