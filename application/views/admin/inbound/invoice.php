@@ -114,6 +114,9 @@
                             <div class="col-lg-offset-2 col-lg-10">
                                 <button type="button" class="btn btn-sm btn-primary" id="addStoragebtn">Update Storage</button>
                             </div>
+                            <div class="col-lg-offset-2 col-lg-2">
+                                <span class="label label-success" id="remainingval" style="display: none;">Success</span>
+                            </div>                            
                         </div>
                     </form>
                 </div>
@@ -178,7 +181,21 @@
                     swal("Success!", "Storage Allocation Success", "success");
                 }
             });
-        });    
+        });
+
+
+        $("#storageSize").blur(function(){
+                validateStorage();
+        });
+
+
+        $("#storageType").blur(function(){
+                validateStorage();
+        });
+
+        $("#volume").blur(function(){
+                validateStorage();
+        });                
 
     });
 
@@ -205,4 +222,28 @@
             }
         })
     }
+
+
+    function validateStorage(){
+            var storageSize = $("#storageSize").val();
+            var storageType = $("#storageType").val();
+            $.ajax({
+                method: "POST",
+                url: "<?= base_url() . 'index.php/inbound/getStorageVolData' ?>",
+                dataType: 'json',
+                success: function(response) {
+                    response.forEach(function(item,index){
+                        if(item['type_id'] == storageType && item['size'] == storageSize){
+                            var remaining = parseInt(item['vol']) - parseInt(item['allocated']);
+                            $("#remainingval").css("display","block");
+                            if(remaining > 0){
+                                var msg = remaining + ' Units Remaining';
+                                $("#remainingval").html(msg);    
+                            }
+                        }
+                    });
+                }
+            })
+        
+    }     
 </script>

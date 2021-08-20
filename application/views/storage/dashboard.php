@@ -65,8 +65,17 @@
 
 
 			$(function () {
-				    var barData = {
-				        labels: ["Small", "Medium", "Large", "XL", "XXL"],
+
+			    	var Smallremaining = "Small (" + "<?= isset($dataArr['small']) ? $dataArr['small'] - $dataArr['smallsize'] : 0 ?>" + ")";
+			    	var Mediumremaining = "Small (" + "<?= isset($dataArr['Medium']) ? $dataArr['Medium'] - $dataArr['Mediumsize'] : 0 ?>" + ")";
+			    	var Largeremaining = "Small (" + "<?= isset($dataArr['Large']) ? $dataArr['Large'] - $dataArr['Largesize'] : 0 ?>" + ")";
+			    	var XLremaining = "Small (" + "<?= isset($dataArr['XL']) ? $dataArr['XL'] - $dataArr['XLsize'] : 0 ?>" + ")";
+			    	var XXLremaining = "Small (" + "<?= isset($dataArr['XXL']) ? $dataArr['XXL'] - $dataArr['XXLsize'] : 0 ?>" + ")";
+
+
+				    var barData = {				    	
+
+				        labels: [Smallremaining, Mediumremaining, Largeremaining, XLremaining, XXLremaining],
 				        datasets: [
 				            {
 				                label: "Total Storage",

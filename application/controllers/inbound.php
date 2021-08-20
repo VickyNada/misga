@@ -21,8 +21,6 @@ class Inbound extends CI_Controller
 		$data["userInfo"] = $this->mcrud->getDataById('users', $userid, 'id');
 		$data["farmerinfo"] = $this->mcrud->getDataById('consumers', FARMER, 'role');
 		$data["iteminfo"] = $this->mcrud->getAllData('inventory_master');
-		$data["unit"] = $this->inventory_modal->getallunit();
-		$data["item"] = $this->inventory_modal->getallunit();
 
 		$this->load->view('includes/dash_header');
 		$this->load->view('includes/navigation', $data);
@@ -34,7 +32,7 @@ class Inbound extends CI_Controller
 	{
 		$userid = $this->session->userdata('userid');
 		$data["userInfo"] = $this->mcrud->getDataById('users', $userid, 'id');
-		$data['storageData'] = $this->mcrud->getAllData('storage_types');
+		$data['storageData'] = $this->mcrud->getAllData('storage_types');		
 
 		$this->load->view('includes/dash_header');
 		$this->load->view('includes/navigation', $data);
@@ -97,7 +95,15 @@ class Inbound extends CI_Controller
 		$response['dataString'] = $dataString;
 		$response['dataString2'] = $dataString2;
 		$response['dataString3'] = $dataString3;
+		
 
+		echo json_encode($response);
+	}
+
+
+	public function getStorageVolData(){
+		$storageVolData = $this->mcrud->getAllData('storage_types_vol');
+		$response = $storageVolData;
 		echo json_encode($response);
 	}
 
