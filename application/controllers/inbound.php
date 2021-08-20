@@ -32,6 +32,7 @@ class Inbound extends CI_Controller
 	{
 		$userid = $this->session->userdata('userid');
 		$data["userInfo"] = $this->mcrud->getDataById('users', $userid, 'id');
+		$data['storageData'] = $this->mcrud->getAllData('storage_types');
 
 		$this->load->view('includes/dash_header');
 		$this->load->view('includes/navigation', $data);
@@ -130,5 +131,22 @@ class Inbound extends CI_Controller
 		}
 
 		echo 1;
+	}
+
+
+	public function updatestoragedata(){
+
+		$whereArr = array(
+			'type_id' => $_POST['storageType'],
+			'size' => $_POST['storageSize'],			
+		);
+
+		$data = array(
+			'allocated' => $_POST['volume'],
+		);
+
+		$this->mcrud->updateDataByForm('storage_types_vol', $data, $whereArr);	
+		echo 1;
+
 	}
 }

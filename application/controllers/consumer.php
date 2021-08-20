@@ -188,7 +188,7 @@ class consumer extends CI_Controller
 			);
 
 			$tags = explode(',',$_POST['tags']);
-			var_dump($tags);
+
 		}
 		if ($_POST['role'] == DELIVERYRIDER) {
 			$data = array(
@@ -206,7 +206,7 @@ class consumer extends CI_Controller
 			);
 		}
 
-		// $result = $this->mcrud->updateDataByForm('consumers', $data, $id);
+		$result = $this->mcrud->updateDataByForm('consumers', $data, $id);
 	}
 
 

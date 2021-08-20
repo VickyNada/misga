@@ -3,7 +3,7 @@
 class login_model extends CI_model
 {
 
-    function loginAuthenticate($username,$password,)
+    function loginAuthenticate($username,$password)
     {
         $this->db->where('email =', $username);
         $this->db->where('password =', md5($password));

@@ -83,7 +83,7 @@
 
                     <input type="hidden" placeholder="id" id="addId" name="addId">
 
-                    <div class="form-group"><label>Item Code </label> <input type="text" placeholder="Enter Item Code" id="itemcode" name="itemcode" class="form-control"></div>
+                    <div class="form-group"><label>Item Code </label> <input type="text" placeholder="Enter Item Code" disabled id="itemcode" name="itemcode" class="form-control"></div>
                     <small>Select the Unit of Measure </small>
                     <select class="form-control m-b" name="unit" id="unit">
                         <option value="0" selected='selected'>Please Select</option>
@@ -244,6 +244,7 @@
 
         page();
 
+        var itemcodelast = 0;
 
 
         $("#addItemForm").validate({
@@ -399,12 +400,15 @@
         $.ajax({
             method: "GET",
             url: "<?= base_url() . 'index.php/inventory/getAllProductData' ?>",
-            datatype : 'json',
+            dataType: 'json',
             success: function(response) {
                 $(".ibox-content-loader").css("display", "none");
                 $(".ibox-content").css("display", "block");
                 $(".tableBody").html('');
-               
+                $(".tableBody").append(response['dataString']);
+                itemcodelast = parseInt(response['itemcode']) + 1;
+                $("#itemcode").val(itemcodelast);
+
                 setTimeout(() => {
                     $("#deleteSort").click();
 

@@ -29,7 +29,7 @@ class Inventory extends CI_Controller
     {
         $allitem = $this->mcrud->getAllDataAscStatusActive('inventory_master', 'id');
         $dataString = '';
-       
+        $itemcode =0;
         foreach ($allitem as $item) {
 
             if($item->Item_status ==1 ){
@@ -58,9 +58,13 @@ class Inventory extends CI_Controller
 				<a class="btn btn-danger btn-rounded" id="deleteItemBtn" onclick="deleteItem(' . $item->id . ') " href="#" ><i class="fa fa-trash-o"></i> </a></td>
 				</tr>';
 
+                $itemcode = $item->Itemcode;
         }
 
-        echo $dataString;
+        $response['dataString'] = $dataString;
+		$response['itemcode'] = $itemcode;
+
+		echo json_encode($response);
     }
 
     

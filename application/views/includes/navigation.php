@@ -36,7 +36,7 @@
                         <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="<?= base_url() . 'index.php/dashboard/index' ?>" id="dashboard1">Dashboard </span></a></li>
-                            <li><a href="dashboard_2.html">Dashboard v.2</a></li>
+                            <li><a href="<?= base_url() . 'index.php/storage/dashboard' ?>">Storage Dashboard</a></li>
                         </ul>
                     </li>
 
@@ -57,9 +57,10 @@
                         <ul class="nav nav-second-level collapse">
                             <li><a href="<?= base_url() . 'index.php/inventory/index' ?>">Inventory Master</a></li>
                             <li><a href="<?= base_url() . 'index.php/storage/index' ?>">Storage</a></li>
+                            
                             <li><a href="<?= base_url() . 'index.php/unit/index' ?>">Unit of Measurement</a></li>
                             <li><a href="<?= base_url() . 'index.php/category/index' ?>">Category</a></li>
-                            <li><a href="<?= base_url() . 'index.php/item/index' ?>">price</a></li>
+                      
                             <li><a href="<?= base_url() . 'index.php/inbound/index' ?>">Receiving Goods</a></li>
                         </ul>
                     </li>

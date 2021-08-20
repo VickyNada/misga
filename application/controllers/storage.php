@@ -7,7 +7,8 @@ class Storage extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('form');
-        $this->load->model('mcrud');
+        $this->load->model('mcrud');        
+        
     }
 
     public function index()
@@ -84,5 +85,21 @@ class Storage extends CI_Controller
         $data['userDelete'] = $this->mcrud->deleteDataById('storage_types', $id, 'id');
 
         redirect(URL_BASE . 'storage');
+    }
+
+
+    public function dashboard(){
+
+        $this->load->model('inventory_modal');
+
+        $userid = $this->session->userdata('userid');
+        $data["userInfo"] = $this->mcrud->getDataById('users', $userid, 'id');
+        $data["stotagetypes"] = $this->mcrud->getAllData('storage_types');
+        $data["stotagevolume"] = $this->mcrud->getAllData('storage_types_vol');
+
+        $this->load->view('includes/dash_header');
+        $this->load->view('includes/navigation', $data);
+        $this->load->view('storage/dashboard');
+        $this->load->view('includes/dash_footer');
     }
 }

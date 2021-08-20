@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2021 at 08:10 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.1.30
+-- Generation Time: Aug 20, 2021 at 07:55 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -125,7 +124,7 @@ CREATE TABLE `inventory_master` (
   `unit` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_code` int(11) NOT NULL,
   `Item_category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `storage_id` int(11) NOT NULL,
+  `storage_id` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `additional_details` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Item_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `createddate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -139,10 +138,11 @@ CREATE TABLE `inventory_master` (
 --
 
 INSERT INTO `inventory_master` (`id`, `Itemcode`, `itemname`, `unit`, `category_code`, `Item_category`, `storage_id`, `additional_details`, `Item_status`, `createddate`, `last_modified`, `createdby`, `delete_status`) VALUES
-(122, 100, 'Apple', '1', 0, '2', 1, 'Apple from australia', '1', '2021-08-14 15:12:29', '2021-08-14 15:12:29', '165', 0),
-(123, 101, 'Water', '3', 0, '1', 1, '123', '1', '2021-08-14 15:32:51', '2021-08-14 15:32:51', '165', 0),
-(125, 102, 'Orange', '1', 0, '2', 3, 'wwe', '1', '2021-08-14 15:47:09', '2021-08-14 15:47:09', '165', 0),
-(126, 103, 'Avacado', '1', 0, '2', 2, 'qqwe', '1', '2021-08-14 15:58:50', '2021-08-14 15:58:35', '165', 0);
+(122, 100, 'Apple', 'Milliliter', 0, 'Eggs - Organic ', '1', 'Apple from australia', '1', '2021-08-20 05:22:00', '2021-08-14 15:12:29', '165', 0),
+(123, 101, 'Water', 'Gram', 0, 'Fruits ', '1', '123', '1', '2021-08-20 05:21:53', '2021-08-14 15:32:51', '165', 0),
+(125, 102, 'Orange', '1', 0, '2', '3', 'wwe', '1', '2021-08-19 11:33:44', '2021-08-14 15:47:09', '165', 0),
+(126, 103, 'Avacado', '1', 0, '2', '2', 'qqwe', '1', '2021-08-19 11:33:40', '2021-08-14 15:58:35', '165', 0),
+(127, 214, 'Mango', 'Kilogram', 0, 'Fruits ', '2', 'Keep it in dry place', '1', '2021-08-19 11:33:34', '2021-08-19 09:53:43', '165', 0);
 
 -- --------------------------------------------------------
 
@@ -164,9 +164,12 @@ CREATE TABLE `itemcategory` (
 --
 
 INSERT INTO `itemcategory` (`id`, `category`, `description`, `status`, `created_date`, `delete_status`) VALUES
-(1, 'Fruit', 'freshfruit', '2', '2021-08-15 23:27:06', 0),
-(6, 'Fruit', 'dry fruit', '2', '2021-08-15 23:49:33', 0),
-(7, 'Vegitable', 'asd', '1', '2021-08-16 00:04:21', 0);
+(6, 'Vegitable', 'All kind of vegetables ', '1', '2021-08-19 13:35:45', 0),
+(7, 'Fruits', 'All kind of fruits', '1', '2021-08-19 13:36:12', 0),
+(8, 'Eggs - Organic', 'All kind of Organic Eggs', '1', '2021-08-19 13:37:57', 0),
+(9, 'Honey', 'Sweet', '1', '2021-08-19 13:38:20', 0),
+(10, 'Dry Fruit ', 'All kind of Dry Fruits', '1', '2021-08-19 13:38:56', 0),
+(11, 'Eggs', 'All kind of Eggs', '1', '2021-08-19 13:39:23', 0);
 
 -- --------------------------------------------------------
 
@@ -194,7 +197,34 @@ INSERT INTO `onhand_stock` (`id`, `itemId`, `quantity`, `batchno`, `unit_price`,
 (3, 122, 32, 1, 34, '2021-08-18', 1088),
 (4, 125, 44, 2, 55, '2021-08-18', 2420),
 (5, 125, 76, 3, 5, '2021-08-18', 380),
-(6, 125, 2, 4, 30, '2021-08-18', 60);
+(6, 125, 2, 4, 30, '2021-08-18', 60),
+(7, 122, 5, 1, 22, '2021-08-19', 110),
+(8, 122, 5, 2, 22, '2021-08-19', 110),
+(9, 125, 34, 3, 22, '2021-08-19', 748);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_type`
+--
+
+CREATE TABLE `payment_type` (
+  `id` int(11) NOT NULL,
+  `payment_type` varchar(32) NOT NULL,
+  `payment_description` varchar(100) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `delete_status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment_type`
+--
+
+INSERT INTO `payment_type` (`id`, `payment_type`, `payment_description`, `created_date`, `delete_status`) VALUES
+(43, 'cash on delivery', 'cash on delivery', '2021-08-19 18:44:50', 0),
+(44, 'Credit card', 'Credit card', '2021-08-19 18:45:09', 0),
+(45, 'vhjvghj', 'gggjk', '2021-08-19 18:52:33', 1),
+(46, 'Debit Card', 'Debit Card', '2021-08-19 19:23:36', 0);
 
 -- --------------------------------------------------------
 
@@ -219,21 +249,10 @@ INSERT INTO `stock_order` (`id`, `batch_id`, `order_id`, `farmer_id`) VALUES
 (3, 1, 2, 42),
 (4, 2, 2, 42),
 (5, 3, 2, 42),
-(6, 4, 2, 42);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `storage`
---
-
-CREATE TABLE `storage` (
-  `id` int(11) NOT NULL,
-  `storage_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `discription` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `capacity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(6, 4, 2, 42),
+(7, 1, 3, 42),
+(8, 2, 3, 42),
+(9, 3, 3, 42);
 
 -- --------------------------------------------------------
 
@@ -251,10 +270,7 @@ CREATE TABLE `storage_types` (
 --
 
 INSERT INTO `storage_types` (`id`, `type`) VALUES
-(13, 'Light Cooler Storage'),
-(14, 'Heavy Cooler Storage'),
-(15, 'Warehouse 1'),
-(16, 'Cooler Storage 1');
+(18, 'Refrigerator 001');
 
 -- --------------------------------------------------------
 
@@ -266,29 +282,20 @@ CREATE TABLE `storage_types_vol` (
   `id` int(11) NOT NULL,
   `type_id` int(50) NOT NULL,
   `size` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vol` int(50) NOT NULL
+  `vol` int(50) NOT NULL,
+  `allocated` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `storage_types_vol`
 --
 
-INSERT INTO `storage_types_vol` (`id`, `type_id`, `size`, `vol`) VALUES
-(5, 13, 'Small', 12),
-(6, 13, 'Medium', 3),
-(7, 13, 'Large', 4),
-(8, 13, 'XL', 4),
-(9, 13, 'XXL', 1),
-(10, 14, 'Small', 20),
-(11, 14, 'Medium', 20),
-(12, 15, 'Small', 14),
-(13, 15, 'Medium', 13),
-(14, 15, 'Large', 43),
-(15, 16, 'Small', 35),
-(16, 16, 'Medium', 21),
-(17, 16, 'Large', 43),
-(18, 16, 'XL', 534),
-(19, 16, 'XXL', 35);
+INSERT INTO `storage_types_vol` (`id`, `type_id`, `size`, `vol`, `allocated`) VALUES
+(25, 18, 'Small', 50, 0),
+(26, 18, 'Medium', 20, 0),
+(27, 18, 'Large', 10, 0),
+(28, 18, 'XL', 5, 0),
+(29, 18, 'XXL', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -310,12 +317,13 @@ CREATE TABLE `unitmeasure` (
 --
 
 INSERT INTO `unitmeasure` (`id`, `unitname`, `description`, `created_by`, `created_date`, `delete_status`) VALUES
-(1, 'Kilogram', 'Kilogram', 'avalable', '2021-08-14 23:11:17', 1),
-(2, 'kilogramasd', 'kilogram', '165', '2021-08-14 23:59:39', 0),
-(8, 'kilogram', 'gram', '165', '2021-08-15 00:30:52', 1),
-(9, 'kilogram', 'kilogram', '165', '2021-08-15 00:35:22', 1),
-(10, 'bottle', 'bottle', '165', '2021-08-15 21:24:59', 1),
-(11, 'Gram', 'Gram', '165', '2021-08-16 20:01:57', 0);
+(3, 'Kilogram', '1000 Gram', '165', '2021-08-19 13:16:11', 0),
+(4, 'Gram', '1 Gram', '165', '2021-08-19 13:16:32', 0),
+(5, 'Milliliter', '1 Milliliter', '165', '2021-08-19 13:17:12', 0),
+(6, 'Liter', '1000 Milliliter', '165', '2021-08-19 13:17:44', 0),
+(7, 'Bottle', '750ml', '165', '2021-08-19 13:18:55', 0),
+(8, 'Piece', '1 Piece', '165', '2021-08-19 13:19:46', 0),
+(9, 'Box', '1 Box', '165', '2021-08-19 13:20:13', 0);
 
 -- --------------------------------------------------------
 
@@ -440,6 +448,13 @@ ALTER TABLE `onhand_stock`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `payment_type`
+--
+ALTER TABLE `payment_type`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `payment_ID` (`id`);
+
+--
 -- Indexes for table `stock_order`
 --
 ALTER TABLE `stock_order`
@@ -511,31 +526,49 @@ ALTER TABLE `farm_images`
 -- AUTO_INCREMENT for table `inventory_master`
 --
 ALTER TABLE `inventory_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+
+--
+-- AUTO_INCREMENT for table `itemcategory`
+--
+ALTER TABLE `itemcategory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `onhand_stock`
 --
 ALTER TABLE `onhand_stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `payment_type`
+--
+ALTER TABLE `payment_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `stock_order`
 --
 ALTER TABLE `stock_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `storage_types`
 --
 ALTER TABLE `storage_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `storage_types_vol`
 --
 ALTER TABLE `storage_types_vol`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `unitmeasure`
+--
+ALTER TABLE `unitmeasure`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`

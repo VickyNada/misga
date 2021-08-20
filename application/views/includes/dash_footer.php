@@ -37,6 +37,7 @@
  <!-- blueimp gallery -->
  <script src="<?= base_url(); ?>assets/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
 
+
 </body>
 
 </html>

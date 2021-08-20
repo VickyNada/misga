@@ -77,12 +77,58 @@
         </div>
     </div>
 </div>
+<div class="wrapper wrapper-content">
+    <div class="row animated fadeInRight">
+        <div class="col-md-6">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Storage Allocation</h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="addStorage">
+                        <div class="form-group row"><label class="col-sm-2 col-form-label">Select Farmer</label>
+                            <div class="col-sm-10">
+                                <select class="form-control m-b" name="storageType" id="storageType">
+                                    <?php foreach ($storageData as $item) { ?>
+                                        <option value="<?= $item->id; ?>"><?= $item->type; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row"><label class="col-sm-2 col-form-label">Select Item</label>
+                            <div class="col-sm-10">
+                                <select class="form-control m-b" name="storageSize" id="storageSize">
+                                    <option value="Small" >Small</option>
+                                    <option value="Medium" >Medium</option>
+                                    <option value="Large" >Large</option>
+                                    <option value="XL" >XL</option>
+                                    <option value="XXL" >XXL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row"><label class="col-lg-2 col-form-label">Volume</label>
+                            <div class="col-lg-10"><input type="text" name="volume" id="volume" value="" placeholder="volume" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button type="button" class="btn btn-sm btn-primary" id="addStoragebtn">Update Storage</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
 <script>
     $(document).ready(function() {
         var newData = window.localStorage.getItem('tableData');
+        var savedStorage = false;
         getInvoiceData(newData);
 
 
@@ -94,6 +140,7 @@
 
 
         $("#savebtn").click(function() {
+            if(savedStorage){
             $.ajax({
                 method: "POST",
                 url: "<?= base_url() . 'index.php/inbound/saveinvoicedata' ?>",
@@ -102,12 +149,41 @@
                 },
                 dataType: 'json',
                 success: function(response) {
-                    alert('svaed');
+                    swal("Success!", "Order Recorder", "success");
                 }
-            })
-        })
+            });
+            }else{
+                swal("Warning!", "Please Allocate Storage Before Complete", "warning");
+            }
+        });
+
+
+        $("#addStoragebtn").click(function() {
+
+            var storageType = $("#storageType").val();
+            var storageSize = $("#storageSize").val();
+            var volume = $("#volume").val();
+
+            $.ajax({
+                method: "POST",
+                url: "<?= base_url() . 'index.php/inbound/updatestoragedata' ?>",
+                data: {
+                    "storageType": storageType,
+                    "storageSize": storageSize,
+                    "volume": volume,
+                },                
+                dataType: 'json',
+                success: function(response) {
+                    savedStorage = true;
+                    swal("Success!", "Storage Allocation Success", "success");
+                }
+            });
+        });    
 
     });
+
+
+
 
     function getInvoiceData(newData) {
         $.ajax({
