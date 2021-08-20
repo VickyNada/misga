@@ -13,9 +13,10 @@ class Inventory extends CI_Controller
 
     public function index()
     {
-        $this->load->model('inventory_model');
-        $dataArray["category"] = $this->inventory_model->getallcategory();
-        $dataArray["unit"] = $this->inventory_model->getallunit();
+        $this->load->model('Inventory_modal');
+        $dataArray["storage"] = $this->Inventory_modal->getallstorage();
+        $dataArray["category"] = $this->Inventory_modal->getallcategory();
+        $dataArray["unit"] = $this->Inventory_modal->getallunit();
        
         $userid = $this->session->userdata('userid');
         $data["userInfo"] = $this->mcrud->getDataById('users', $userid, 'id');
@@ -28,6 +29,7 @@ class Inventory extends CI_Controller
     {
         $allitem = $this->mcrud->getAllDataAscStatusActive('inventory_master', 'id');
         $dataString = '';
+        $itemcode =0;
         foreach ($allitem as $item) {
 
             if($item->Item_status ==1 ){
@@ -55,8 +57,14 @@ class Inventory extends CI_Controller
 				<td><a class="btn btn-warning btn-rounded" id="editItemBtn" onclick="editItem(' . $item->id . ')" href="#" ><i class="fa fa-pencil-square-o"></i></a>
 				<a class="btn btn-danger btn-rounded" id="deleteItemBtn" onclick="deleteItem(' . $item->id . ') " href="#" ><i class="fa fa-trash-o"></i> </a></td>
 				</tr>';
+
+                $itemcode = $item->Itemcode;
         }
-        echo $dataString;
+
+        $response['dataString'] = $dataString;
+		$response['itemcode'] = $itemcode;
+
+		echo json_encode($response);
     }
 
     

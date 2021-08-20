@@ -9,6 +9,9 @@ class category extends CI_Controller
         $this->load->helper('form');
         $this->load->model('mcrud');
       
+        	if($this->session->userdata('userid') == null){
+			redirect(URL_BASE . 'login');
+		}
     }
 
     public function index()

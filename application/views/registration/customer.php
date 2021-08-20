@@ -40,17 +40,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Password *</label>
-                                    <input id="password" name="password" type="text" class="form-control required">
+                                    <input id="password" name="password" type="password" class="form-control required">
                                 </div>
                                 <div class="form-group">
                                     <label>Confirm Password *</label>
-                                    <input id="confirm" name="confirm" type="text" class="form-control required">
+                                    <input id="confirm" name="confirm" type="password" class="form-control required">
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="text-center">
                                     <div style="margin-top: 20px">
-                                <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
+                                        <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
                                     </div>
                                 </div>
                             </div>
@@ -182,10 +182,19 @@
         }).validate({
             errorPlacement: function(error, element) {
                 element.before(error);
+
             },
             rules: {
+                email: {
+                    email: true,
+                },
                 confirm: {
                     equalTo: "#password",
+                },
+
+                password: {
+                    minlength: 5,
+                    maxlength: 15,
                 },
 
                 nic: {

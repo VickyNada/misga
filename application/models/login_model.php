@@ -3,10 +3,12 @@
 class login_model extends CI_model
 {
 
-    function loginAuthenticate($username, $password)
+    function loginAuthenticate($username,$password)
     {
         $this->db->where('email =', $username);
         $this->db->where('password =', md5($password));
+       
+
         $Query = $this->db->get('users');
         
         if ($Query->num_rows() == 1) {
@@ -16,10 +18,11 @@ class login_model extends CI_model
         }
     }
 
-    function loginAuthenticateConsumer($username, $password)
+    function loginAuthenticateConsumer($username, $password,$roleid)
     {
         $this->db->where('email =', $username);
         $this->db->where('password =', md5($password));
+        $this->db->where('role =', $roleid);
         $Query = $this->db->get('consumers');
         
         if ($Query->num_rows() == 1) {

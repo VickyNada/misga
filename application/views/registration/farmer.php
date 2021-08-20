@@ -36,15 +36,15 @@
                             <div class="col-lg-8">
                                 <div class="form-group">
                                     <label>Email *</label>
-                                    <input id="email" name="email" type="text" class="form-control required">
+                                    <input id="email" name="email" type="text" class="form-control required"placeholder="Please enter email">
                                 </div>
                                 <div class="form-group">
                                     <label>Password *</label>
-                                    <input id="password" name="password" type="text" class="form-control required">
+                                    <input id="password" name="password" type="password" class="form-control required"placeholder="Please enter password">
                                 </div>
                                 <div class="form-group">
                                     <label>Confirm Password *</label>
-                                    <input id="confirm" name="confirm" type="text" class="form-control required">
+                                    <input id="confirm" name="confirm" type="password" class="form-control required"placeholder="Please retype password">
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -64,29 +64,29 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>First name *</label>
-                                    <input id="firstname" name="firstname" type="text" class="form-control required">
+                                    <input id="firstname" name="firstname" type="text" class="form-control required"placeholder="Please enter First name">
                                 </div>
                                 <div class="form-group">
                                     <label>NIC *</label>
-                                    <input id="nic" name="nic" type="text" class="form-control required">
+                                    <input id="nic" name="nic" type="text" class="form-control required"placeholder="Please enter NIC number">
                                 </div>
                                 <div class="form-group">
                                     <label>Contact number*</label>
-                                    <input id="contact1" name="contact1" type="text" class="form-control required">
+                                    <input id="contact1" name="contact1" type="text" class="form-control required"placeholder="Please enter Contact number">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Last name *</label>
-                                    <input id="lastname" name="lastname" type="text" class="form-control required">
+                                    <input id="lastname" name="lastname" type="text" class="form-control required"placeholder="Please enter Last name">
                                 </div>
                                 <div class="form-group">
                                     <label> Address *</label>
-                                    <input id="baddress" name="baddress" type="text" class="form-control required">
+                                    <input id="baddress" name="baddress" type="text" class="form-control required"placeholder="Please enter address">
                                 </div>
                                 <div class="form-group">
                                     <label>City *</label>
-                                    <input id="city" name="city" type="text" class="form-control required">
+                                    <input id="city" name="city" type="text" class="form-control required"placeholder="Please enter city">
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -104,22 +104,22 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Farm Name *</label>
-                                    <input id="farmname" name="farmname" type="text" class="form-control required">
+                                    <input id="farmname" name="farmname" type="text" class="form-control required" placeholder="Please enter Farm Name">
                                 </div>
                                 <div class="form-group">
                                     <label>Area of farm * </label>
-                                    <input id="area" name="area" type="text" class="form-control required">
+                                    <input id="area" name="area" type="Number" class="form-control required" placeholder="Please enter area in perches">
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Farn address *</label>
-                                    <input id="daddress" name="daddress" type="text" class="form-control required">
+                                    <input id="daddress" name="daddress" type="text" class="form-control required"placeholder="Please enter Farn address">
                                 </div>
                                 <div class="form-group">
                                     <label>Farm Contact *</label>
-                                    <input id="contact2" name="contact2" type="text" class="form-control required">
+                                    <input id="contact2" name="contact2" type="text" class="form-control required"placeholder="Please enter Farn contact number">
                                 </div>
 
                             </div>
@@ -238,20 +238,26 @@
                 form.submit();
             }
 
-
-
         }).validate({
             errorPlacement: function(error, element) {
                 element.before(error);
+
+
+            
             },
             rules: {
+
+                email:{
+                    email:true,
+                },
+                                
                 confirm: {
                     equalTo: "#password",
                 },
-
-                email: {
-                    email: true,
-
+             
+                password:{
+                    minlength: 5,
+                    maxlength: 15,
                 },
 
                 nic: {

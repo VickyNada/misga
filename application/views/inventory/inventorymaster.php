@@ -1,3 +1,4 @@
+<!-- <?php var_dump($storage); ?> -->
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>Inventory Master</h2>
@@ -82,14 +83,14 @@
 
                     <input type="hidden" placeholder="id" id="addId" name="addId">
 
-                    <div class="form-group"><label>Item Code </label> <input type="text" placeholder="Enter Item Code" id="itemcode" name="itemcode" class="form-control"></div>
+                    <div class="form-group"><label>Item Code </label> <input type="text" placeholder="Enter Item Code" disabled id="itemcode" name="itemcode" class="form-control"></div>
                     <small>Select the Unit of Measure </small>
                     <select class="form-control m-b" name="unit" id="unit">
                         <option value="0" selected='selected'>Please Select</option>
                         <?php
 
                         foreach ($unit as $row) {
-                            echo '<option > ' . $row["unitname"] . ' </option>';
+                            echo '<option value ="' . $row["unitname"] . '" > ' . $row["unitname"] . ' </option>';
                         }
                         ?>
                         <!-- <option value="1">Kilogram </option>
@@ -102,11 +103,11 @@
 
                     <small>Select the Item Category </small>
                     <select class="form-control m-b" name="itemcategory" id="itemcategory">
-                    <option value="0" selected='selected'>Please Select Item Category </option>
+                        <option value="0" selected='selected'>Please Select Item Category </option>
                         <?php
 
                         foreach ($category as $row) {
-                            echo '<option > ' . $row["category"] . ' </option>';
+                            echo '<option value="' . $row["category"] . ' "> ' . $row["category"] . ' </option>';
                         }
                         ?>
 
@@ -120,9 +121,13 @@
                     <small>Select the Item Store </small>
                     <select class="form-control m-b" name="store" id="store">
                         <option value="0" selected='selected'>Please Select Store</option>
-                        <option value="1">Frige </option>
-                        <option value="2">Shelf </option>
-                        <option value="3">Box </option>
+                        <?php
+
+                        foreach ($storage as $row) {
+                            echo '<option value ="' . $row["type"] . '" > ' . $row["type"] . ' </option>';
+                        }
+                        ?>
+
                     </select>
 
 
@@ -163,14 +168,14 @@
 
                     <input type="hidden" placeholder="id" id="editId" name="editId">
 
-                    <div class="form-group"><label>Item Code </label> <input type="text" placeholder="Enter Item Code" id="edititemcode" name="edititemcode" class="form-control"></div>
+                    <!-- <div class="form-group"><label>Item Code </label> <input type="text" placeholder="Enter Item Code" id="edititemcode" name="edititemcode" class="form-control"></div> -->
                     <small>Select the Unit of Measure </small>
                     <select class="form-control m-b" name="editunit" id="editunit">
-                    <option value="0" selected='selected'>Please Select</option>
+                        <option value="0" selected='selected'>Please Select</option>
                         <?php
 
                         foreach ($unit as $row) {
-                            echo '<option > ' . $row["unitname"] . ' </option>';
+                            echo '<option value ="' . $row["unitname"] . '" > ' . $row["unitname"] . ' </option>';
                         }
                         ?>
 
@@ -185,11 +190,11 @@
 
                     <small>Select the Item Category </small>
                     <select class="form-control m-b" name="edititemcategory" id="edititemcategory">
-                    <option value="0" selected='selected'>Please Select Item Category </option>
+                        <option value="0" selected='selected'>Please Select Item Category </option>
                         <?php
 
                         foreach ($category as $row) {
-                            echo '<option > ' . $row["category"] . ' </option>';
+                            echo '<option value="' . $row["category"] . ' "> ' . $row["category"] . ' </option>';
                         }
                         ?>
 
@@ -202,10 +207,12 @@
 
                     <small>Select the Item Store </small>
                     <select class="form-control m-b" name="editstore" id="editstore">
-                        <option value="0" selected='selected'>Please Select Store</option>
-                        <option value="1">Frige </option>
-                        <option value="2">Shelf </option>
-                        <option value="3">Box </option>
+                        <?php
+
+                        foreach ($storage as $row) {
+                            echo '<option value ="' . $row["type"] . '" > ' . $row["type"] . ' </option>';
+                        }
+                        ?>
                     </select>
 
 
@@ -237,6 +244,8 @@
 
         page();
 
+        var itemcodelast = 0;
+
 
         $("#addItemForm").validate({
             rules: {
@@ -248,16 +257,16 @@
                 },
                 unit: {
                     required: true,
-                    min: 1,
+
                 },
 
                 itemcategory: {
                     required: true,
-                    min: 1,
+
                 },
                 store: {
                     required: true,
-                    min: 1,
+                    
                 },
                 adddetails: {
                     required: true,
@@ -285,6 +294,7 @@
             },
 
             submitHandler: function(form) {
+
                 var data = {
                     'itemcode': $('#itemcode').val(),
                     'itemname': $('#itemname').val(),
@@ -390,11 +400,15 @@
         $.ajax({
             method: "GET",
             url: "<?= base_url() . 'index.php/inventory/getAllProductData' ?>",
+            dataType: 'json',
             success: function(response) {
                 $(".ibox-content-loader").css("display", "none");
                 $(".ibox-content").css("display", "block");
                 $(".tableBody").html('');
-                $(".tableBody").append(response);
+                $(".tableBody").append(response['dataString']);
+                itemcodelast = parseInt(response['itemcode']) + 1;
+                $("#itemcode").val(itemcodelast);
+
                 setTimeout(() => {
                     $("#deleteSort").click();
 
