@@ -60,7 +60,7 @@ class Registration extends CI_Controller
 					$this->upload->initialize($config);
 					$this->upload->do_upload('profilepic');
 					$this->session->set_userdata('success', ' Registration Successful! Please login');
-					redirect(URL_BASE . 'login');
+					redirect(URL_BASE . 'role');
 				} else {
 					$this->session->set_userdata('error', ' Email already has a Customer Account');
 					redirect(URL_BASE . 'registration/reg_customer');
@@ -130,7 +130,7 @@ class Registration extends CI_Controller
 					$this->uploadFilesToDBFarm('farmpic5', $insert_id);
 
 					$this->session->set_userdata('success', ' Registration Successful! Please login');
-					redirect(URL_BASE . 'login');
+					redirect(URL_BASE . 'role');
 				} else {
 					$this->session->set_userdata('error', ' Email already has a Farmer Account');
 					redirect(URL_BASE . 'registration/reg_farmer');
@@ -222,7 +222,7 @@ class Registration extends CI_Controller
 					$this->uploadFilesToDBDocs('vb', $insert_id);
 
 					$this->session->set_userdata('success', ' Registration Successful! Please login');
-					redirect(URL_BASE . 'login');
+					redirect(URL_BASE . 'role');
 				} else {
 					$this->session->set_userdata('error', ' Email already has a Delivery User Account');
 					redirect(URL_BASE . 'registration/reg_deliveryuser');

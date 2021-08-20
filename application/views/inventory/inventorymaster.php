@@ -266,7 +266,7 @@
                 },
                 store: {
                     required: true,
-                    min: 1,
+                    
                 },
                 adddetails: {
                     required: true,

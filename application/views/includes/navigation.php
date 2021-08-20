@@ -15,21 +15,28 @@
                                 $role = ($userInfo[0]->role);
                                 if ($role == 1) {
                                     echo "Admin";
-                                } else {
+                                } else if ($role == 2){
                                     echo "Standard User";
+                                } else if ($role == 3){
+                                    echo "Customer";
+                                } else if ($role == 4){
+                                    echo "Farmer";
+                                } else if ($role == 5){
+                                    echo "Delivery person";
                                 }
+
                                 ?>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                                <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
-                                <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
+                                
+                                <li><a class="dropdown-item" href="<?= base_url() . 'index.php/consumer/editConsumer' ?>">Profile</a></li>
+                                
                                 <li class="dropdown-divider"></li>
 
                             </ul>
                         </div>
                         <div class="logo-element">
-                            IN+s
+                            KVO
                         </div>
                     </li>
                     <li id="dashboard_head">
@@ -46,10 +53,16 @@
                         <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">User Management</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="<?= base_url() . 'index.php/usermanagement/index' ?>">General Users</a></li>
+                        </ul>
+                        </li>
+                        <li>
+                        <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Persons Management</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
                             <li><a href="<?= base_url() . 'index.php/consumer/customer' ?>">Customer</a></li>
                             <li><a href="<?= base_url() . 'index.php/consumer/index' ?>">Farmer</a></li>
                             <li><a href="<?= base_url() . 'index.php/consumer/delivery' ?>">Delivery Users</a></li>
-                        </ul>
+
+                            </ul>
                     </li>
                     <?php } ?>
                     <li>

@@ -28,7 +28,7 @@
                     <div class="col-sm-6">
                         <h5>Company:</h5>
                         <address>
-                            <strong>Krish and Vila.</strong><br>
+                            <strong>Krish Vila Organic.</strong><br>
                             106 Jorg Avenu, 600/10<br>
                             Chicago, VT 32456<br>
                             <abbr title="Phone">P:</abbr> (123) 601-4590

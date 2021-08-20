@@ -78,7 +78,7 @@
 
                     <input type="hidden" placeholder="id" id="addId" name="addId">
 
-                    <div class="form-group"><label>Paymwnt Type </label> <input type="text" placeholder="Enter payment Type" id="paymenttype" name="paymenttype" class="form-control"></div>
+                    <div class="form-group"><label>Payment Type </label> <input type="text" placeholder="Enter payment Type" id="paymenttype" name="paymenttype" class="form-control"></div>
                     <div class="form-group"><label>Payment Description</label> <input type="text" placeholder="Enter payment Description" id="description" name="description" class="form-control"></div>
 
 

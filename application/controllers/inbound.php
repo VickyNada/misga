@@ -21,6 +21,8 @@ class Inbound extends CI_Controller
 		$data["userInfo"] = $this->mcrud->getDataById('users', $userid, 'id');
 		$data["farmerinfo"] = $this->mcrud->getDataById('consumers', FARMER, 'role');
 		$data["iteminfo"] = $this->mcrud->getAllData('inventory_master');
+		$data["unit"] = $this->inventory_modal->getallunit();
+		$data["item"] = $this->inventory_modal->getallunit();
 
 		$this->load->view('includes/dash_header');
 		$this->load->view('includes/navigation', $data);

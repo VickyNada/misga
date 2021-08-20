@@ -38,10 +38,16 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row"><label class="col-sm-2 col-form-label">Select Item</label>
+                        <div class="form-group row"><label class="col-sm-2 col-form-label">Select Unit</label>
                             <div class="col-sm-10">
                                 <select class="form-control m-b" name="item_unit" id="item_unit">
-                                    <option>KG</option>
+                                    <option value="0" selected='selected'>Please Select</option>
+                                    <?php
+
+                                    foreach ($unit as $row) {
+                                        echo '<option value ="' . $row["unitname"] . '" > ' . $row["unitname"] . ' </option>';
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>

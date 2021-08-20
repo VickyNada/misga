@@ -13,10 +13,10 @@ class Inventory extends CI_Controller
 
     public function index()
     {
-        $this->load->model('inventory_model');
-        $dataArray["storage"] = $this->inventory_model->getallstorage();
-        $dataArray["category"] = $this->inventory_model->getallcategory();
-        $dataArray["unit"] = $this->inventory_model->getallunit();
+        $this->load->model('Inventory_modal');
+        $dataArray["storage"] = $this->Inventory_modal->getallstorage();
+        $dataArray["category"] = $this->Inventory_modal->getallcategory();
+        $dataArray["unit"] = $this->Inventory_modal->getallunit();
        
         $userid = $this->session->userdata('userid');
         $data["userInfo"] = $this->mcrud->getDataById('users', $userid, 'id');
