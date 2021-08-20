@@ -77,6 +77,12 @@
                             <li><a href="<?= base_url() . 'index.php/inbound/index' ?>">Receiving Goods</a></li>
                         </ul>
                     </li>
+                    <li><a href="#"><i class="fa fa-car"></i> <span class="nav-label">Manage Delivery</span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="<?= base_url() . 'index.php/delivery/Delivery' ?>">On Going Delivery</a></li>
+                                <li><a href="<?= base_url() . 'index.php/delivery/allDelivery' ?>">All Delivery</a></li>
+                            </ul>
+                    </li>
                 </ul>
             </div>
         </nav>

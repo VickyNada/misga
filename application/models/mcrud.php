@@ -92,5 +92,19 @@ class Mcrud extends CI_Model {
         return $query->result();
     }    
 
+    //Fetch all Data from Database ASC order
+    public function fetchAllData($tablename,$orderattr) {
+        $this->db->order_by("$orderattr ASC");
+        $query = $this->db->get($tablename);
+        return $query->result();
+    }
+
+    // Fetch Delivery Details where del_statsu != '1' and Paystatus != '1'
+    public function fetch_del_data($tablename,$orderattr) {
+        $this->db->order_by("$orderattr ASC");
+        $query = $this->db->get_where($tablename,array('pay_status'=>1));
+        return $query->result();
+    }  
+
 
 }
