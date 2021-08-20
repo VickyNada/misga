@@ -19,6 +19,10 @@
 <script src="<?= base_url(); ?>assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="<?= base_url(); ?>assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/plugins/footable/footable.all.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/plugins/chosen/chosen.jquery.js"></script>
+<script src="<?= base_url(); ?>assets/js/plugins/peity/jquery.peity.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/plugins/jqGrid/i18n/grid.locale-en.js"></script>
+<script src="<?= base_url(); ?>assets/js/plugins/jqGrid/jquery.jqGrid.min.js"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="<?= base_url(); ?>assets/js/inspinia.js"></script>
@@ -32,8 +36,6 @@
 
  <!-- blueimp gallery -->
  <script src="<?= base_url(); ?>assets/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
- <!-- Tags Input -->
- <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
 </body>
 

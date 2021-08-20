@@ -4,7 +4,7 @@
             <div>
                 <img src="<?= base_url(); ?>assets/img/design.png" class="logo-img" style="width: 229px; height: 239px;">
             </div>
-            <h3>Welcome to Krish and Villa </h3>
+            <h3>Welcome to Krish Villa Organic  </h3>
             <?php if ($this->session->userdata('error')) { ?>
                 <div class="alert alert-danger alert-dismissable"><?php echo $this->session->userdata('error'); ?> </div>
             <?php $this->session->unset_userdata('error');
@@ -33,7 +33,8 @@
                 <button type="submit" class="btn btn-primary block full-width m-b" name="Login">Login</button>
 
                
-                <a href="<?= base_url() . 'index.php/login/reset_password' ?>"><small>Forgot password?</small></a>
+                <a href="<?= base_url() . 'index.php/login/reset_password' ?>"><small>Forgot password ?</small></a><br>
+                <a href="<?= base_url() . 'index.php/role/index' ?>"><small>Wanna change Role ?</small></a>
                 <p class="text-muted text-center"><small>Do not have an account?</small></p>
                 <!-- <a class="btn btn-sm btn-white btn-block" href="<?= base_url() . 'index.php/registration' ?>">Create an account</a> -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
@@ -80,7 +81,7 @@
             rules: {
                 password: {
                     required: true,
-                    minlength: 0,
+                    minlength: 5,
                 },
 
                 username: {

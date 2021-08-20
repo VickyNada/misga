@@ -242,13 +242,7 @@
             errorPlacement: function(error, element) {
                 element.before(error);
 
-                jQuery.validator.addMethod("customEmail", function(value, element) {
-                return this.optional(element) ||
-                    (value.indexOf('.') !== -1 &&
-                        value.indexOf('@') !== -1 &&
-                        value.indexOf('.') < (value.length - 1)
-                    );
-            }, "Please enter a valid email");
+
             
             },
             rules: {

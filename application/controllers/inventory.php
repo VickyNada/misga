@@ -14,6 +14,7 @@ class Inventory extends CI_Controller
     public function index()
     {
         $this->load->model('inventory_model');
+        $dataArray["storage"] = $this->inventory_model->getallstorage();
         $dataArray["category"] = $this->inventory_model->getallcategory();
         $dataArray["unit"] = $this->inventory_model->getallunit();
        
@@ -28,6 +29,7 @@ class Inventory extends CI_Controller
     {
         $allitem = $this->mcrud->getAllDataAscStatusActive('inventory_master', 'id');
         $dataString = '';
+       
         foreach ($allitem as $item) {
 
             if($item->Item_status ==1 ){
@@ -55,7 +57,9 @@ class Inventory extends CI_Controller
 				<td><a class="btn btn-warning btn-rounded" id="editItemBtn" onclick="editItem(' . $item->id . ')" href="#" ><i class="fa fa-pencil-square-o"></i></a>
 				<a class="btn btn-danger btn-rounded" id="deleteItemBtn" onclick="deleteItem(' . $item->id . ') " href="#" ><i class="fa fa-trash-o"></i> </a></td>
 				</tr>';
+
         }
+
         echo $dataString;
     }
 

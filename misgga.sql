@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2021 at 07:55 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.7
+-- Generation Time: Aug 18, 2021 at 08:10 PM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.1.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -61,11 +62,7 @@ INSERT INTO `consumers` (`id`, `role`, `first_name`, `last_name`, `email`, `pass
 (42, 4, 'Romana', 'D Carter', 'Roamana@gmail.com', '202cb962ac59075b964b07152d234b70', '12212121212', '', '0000-00-00', '16/5, Station Road, Wattala', '15/5, Bus Lane, Wattala', 'Wattala', 2147483647, 2147483647, './assets/img/custom/farmers/1628791310a3.jpg', '2021-08-12 18:01:50', 0, 0, '56', 'Dairy World', 0),
 (43, 4, 'Peter', 'Cummings', 'Peter@gmail.com', '202cb962ac59075b964b07152d234b70', '12212121212', '', '0000-00-00', '4391 Corbin Branch Road', '15/5, Bus Lane, Wattala', 'Wattala', 1234567890, 1234567890, './assets/img/custom/farmers/1628791521a2.jpg', '2021-08-12 18:05:21', 0, 0, '56', 'Dairy World', 0),
 (44, 4, 'Lois', 'Hanneman', 'Hanneman@gmail.com', '202cb962ac59075b964b07152d234b70', '12212121212', '', '0000-00-00', '16/5, Station Road, Wattala', '56, Rock road, Colombo', 'Tennessee', 1234567890, 2147483647, './assets/img/custom/farmers/1628791608a4.jpg', '2021-08-12 18:06:48', 0, 0, '56', 'Bunny Farm', 0),
-(45, 5, 'Patrick', 'Benson', 'Patrick@gmail.com', '202cb962ac59075b964b07152d234b70', '12212121212', 'B123456', '2021-08-27', '16/5, Station Road, Wattala', '', 'Minnosota', 1234567890, 2147483647, './assets/img/custom/deliveryusers/1628793811a7.jpg', '2021-08-12 18:43:31', 0, 0, '', '', 0),
-(46, 5, 'Vicky', 'nadaraja', 'vickynada@gmail.com', 'cd56235491d3141bc47ae90a6b59aa00', '930412511', 'asdasd', '2021-07-08', 'ds', '', 'KDSKL', 756485811, 0, './assets/img/custom/deliveryusers/16291297111628956487man-avatar-profile-P9MYWR.jpg', '2021-08-16 16:01:51', 0, 0, '', '', 0),
-(47, 5, 'pathuma', 'nadaraja', 'pathuma@gmail.com', '202cb962ac59075b964b07152d234b70', '930412511', 'asdasd', '2021-09-02', 'ds', '', 'dsf', 756485811, 0, './assets/img/custom/deliveryusers/16291319741628956487man-avatar-profile-P9MYWR.jpg', '2021-08-16 16:39:34', 0, 0, '', '', 0),
-(48, 3, 'Vicky', 'nadaraja', 'pathuma@gmail.com', '250cf8b51c773f3f8dc8b4be867a9a02', '930412511', '', '0000-00-00', 'sdfdsf', 'sd', 'SD', 756485811, 756485811, './assets/img/custom/customers/16291326001628956487man-avatar-profile-P9MYWR.jpg', '2021-08-16 16:50:00', 0, 0, '', '', 0),
-(49, 5, 'asdasd', 'asdasd', 'asdasd@gmail.com', '202cb962ac59075b964b07152d234b70', '930412511', '232323', '2021-08-02', 'sasdsad', '', 'sad', 756485811, 0, './assets/img/custom/deliveryusers/1629136506', '2021-08-16 17:55:06', 0, 2, '', '', 0);
+(45, 5, 'Patrick', 'Benson', 'Patrick@gmail.com', '202cb962ac59075b964b07152d234b70', '12212121212', 'B123456', '2021-08-27', '16/5, Station Road, Wattala', '', 'Minnosota', 1234567890, 2147483647, './assets/img/custom/deliveryusers/1628793811a7.jpg', '2021-08-12 18:43:31', 0, 0, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -84,11 +81,8 @@ CREATE TABLE `farmer_corps` (
 --
 
 INSERT INTO `farmer_corps` (`id`, `farmer_id`, `corp_id`) VALUES
-(6, 42, 122),
-(7, 42, 125),
-(8, 42, 122),
-(9, 42, 123),
-(10, 42, 125);
+(25, 42, 122),
+(26, 42, 123);
 
 -- --------------------------------------------------------
 
@@ -177,6 +171,59 @@ INSERT INTO `itemcategory` (`id`, `category`, `description`, `status`, `created_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `onhand_stock`
+--
+
+CREATE TABLE `onhand_stock` (
+  `id` int(11) NOT NULL,
+  `itemId` int(11) NOT NULL,
+  `quantity` float NOT NULL,
+  `batchno` int(11) NOT NULL,
+  `unit_price` float NOT NULL,
+  `create_date` date NOT NULL DEFAULT current_timestamp(),
+  `amount` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `onhand_stock`
+--
+
+INSERT INTO `onhand_stock` (`id`, `itemId`, `quantity`, `batchno`, `unit_price`, `create_date`, `amount`) VALUES
+(1, 122, 12, 1, 33, '2021-08-18', 396),
+(2, 125, 33, 2, 12, '2021-08-18', 396),
+(3, 122, 32, 1, 34, '2021-08-18', 1088),
+(4, 125, 44, 2, 55, '2021-08-18', 2420),
+(5, 125, 76, 3, 5, '2021-08-18', 380),
+(6, 125, 2, 4, 30, '2021-08-18', 60);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_order`
+--
+
+CREATE TABLE `stock_order` (
+  `id` int(11) NOT NULL,
+  `batch_id` int(11) NOT NULL,
+  `order_id` int(50) NOT NULL,
+  `farmer_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `stock_order`
+--
+
+INSERT INTO `stock_order` (`id`, `batch_id`, `order_id`, `farmer_id`) VALUES
+(1, 1, 1, 42),
+(2, 2, 1, 42),
+(3, 1, 2, 42),
+(4, 2, 2, 42),
+(5, 3, 2, 42),
+(6, 4, 2, 42);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `storage`
 --
 
@@ -206,7 +253,8 @@ CREATE TABLE `storage_types` (
 INSERT INTO `storage_types` (`id`, `type`) VALUES
 (13, 'Light Cooler Storage'),
 (14, 'Heavy Cooler Storage'),
-(15, 'Warehouse 1');
+(15, 'Warehouse 1'),
+(16, 'Cooler Storage 1');
 
 -- --------------------------------------------------------
 
@@ -235,7 +283,12 @@ INSERT INTO `storage_types_vol` (`id`, `type_id`, `size`, `vol`) VALUES
 (11, 14, 'Medium', 20),
 (12, 15, 'Small', 14),
 (13, 15, 'Medium', 13),
-(14, 15, 'Large', 43);
+(14, 15, 'Large', 43),
+(15, 16, 'Small', 35),
+(16, 16, 'Medium', 21),
+(17, 16, 'Large', 43),
+(18, 16, 'XL', 534),
+(19, 16, 'XXL', 35);
 
 -- --------------------------------------------------------
 
@@ -318,11 +371,7 @@ INSERT INTO `vehicle_images` (`id`, `deliveryuser_id`, `image_type`, `image`) VA
 (1, 45, 'dril', './assets/img/custom/deliveryusers/1628793811zender_logo.png'),
 (2, 45, 'revl', './assets/img/custom/deliveryusers/1628793811starter_logo.jpg'),
 (3, 45, 'ins', './assets/img/custom/deliveryusers/1628793811rails_logo.png'),
-(4, 45, 'vb', './assets/img/custom/deliveryusers/1628793811rails_logo.png'),
-(5, 46, 'dril', './assets/img/custom/deliveryusers/16291297111628956487man-avatar-profile-P9MYWR.jpg'),
-(6, 46, 'revl', './assets/img/custom/deliveryusers/16291297111628956487man-avatar-profile-P9MYWR.jpg'),
-(7, 46, 'ins', './assets/img/custom/deliveryusers/16291297111628956487man-avatar-profile-P9MYWR.jpg'),
-(8, 46, 'vb', './assets/img/custom/deliveryusers/16291297121628956487man-avatar-profile-P9MYWR.jpg');
+(4, 45, 'vb', './assets/img/custom/deliveryusers/1628793811rails_logo.png');
 
 -- --------------------------------------------------------
 
@@ -345,10 +394,7 @@ CREATE TABLE `vehicle_info` (
 
 INSERT INTO `vehicle_info` (`id`, `userId`, `vehicle_type`, `manufacturer`, `vehicle_model`, `regnumber`) VALUES
 (5, 36, 'VAN', 'Totota', 'KDH', 'CAA-1234'),
-(6, 45, 'Car', 'Honda', 'Grace', 'CAA-1234'),
-(7, 46, 'Car', 'Hero', 'adasd', 'asdasd'),
-(8, 47, 'Motor bikes', 'Bajaj', 'adasd', 'asdasd'),
-(9, 49, 'Car', 'Hero', 'sdasd', 'sadasd');
+(6, 45, 'Car', 'Honda', 'Grace', 'CAA-1234');
 
 --
 -- Indexes for dumped tables
@@ -386,6 +432,20 @@ ALTER TABLE `inventory_master`
 --
 ALTER TABLE `itemcategory`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `onhand_stock`
+--
+ALTER TABLE `onhand_stock`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stock_order`
+--
+ALTER TABLE `stock_order`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `batch_id` (`batch_id`),
+  ADD KEY `farmer_id` (`farmer_id`);
 
 --
 -- Indexes for table `storage_types`
@@ -433,13 +493,13 @@ ALTER TABLE `vehicle_info`
 -- AUTO_INCREMENT for table `consumers`
 --
 ALTER TABLE `consumers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `farmer_corps`
 --
 ALTER TABLE `farmer_corps`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `farm_images`
@@ -454,28 +514,28 @@ ALTER TABLE `inventory_master`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
--- AUTO_INCREMENT for table `itemcategory`
+-- AUTO_INCREMENT for table `onhand_stock`
 --
-ALTER TABLE `itemcategory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `onhand_stock`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `stock_order`
+--
+ALTER TABLE `stock_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `storage_types`
 --
 ALTER TABLE `storage_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `storage_types_vol`
 --
 ALTER TABLE `storage_types_vol`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `unitmeasure`
---
-ALTER TABLE `unitmeasure`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -487,13 +547,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vehicle_images`
 --
 ALTER TABLE `vehicle_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `vehicle_info`
 --
 ALTER TABLE `vehicle_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

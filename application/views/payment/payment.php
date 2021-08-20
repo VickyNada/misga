@@ -1,13 +1,14 @@
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Unit of Measurement</h2>
+        <h2>Payment type</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="<?= base_url() . 'index.php/dashboard/index' ?>">Home</a>
             </li>
 
             <li class="breadcrumb-item active">
-                <strong>Unit of Measurement</strong>
+                <strong>Payment types</strong>
             </li>
         </ol>
     </div>
@@ -17,8 +18,8 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>List of Unit Measurement </h5>
-                    <a><button type="button" style=" float: right; margin-top: -5px;" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#addItemModal" id="addBtn"><i class="fa fa-plus-circle"></i> Add New Unit</button></a>
+                    <h5>List of Payment type </h5>
+                    <a><button type="button" style=" float: right; margin-top: -5px;" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#addItemModal" id="addBtn"><i class="fa fa-plus-circle"></i> Add New type</button></a>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -36,10 +37,10 @@
                         <thead>
                             <tr>
 
-                                <th>Unit Name</th>
-                                <th>Description </th>
+                                <th>Internal ID</th>
+                                <th>Payment Type </th>
+                                <th>Description</th>
                                 <th>Created Date</th>
-                                <th>Created by</th>
                                 <th id="deleteSort">Action Unit </th>
 
                             </tr>
@@ -70,22 +71,22 @@
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" id="closeModalIcon"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Add New Unit of Measurement </h4>
-                    <small class="font-bold">Please enter the Measurement details </small>
+                    <h4 class="modal-title">Add new type </h4>
+                    <small class="font-bold">Please enter the payment details </small>
                 </div>
                 <div class="modal-body">
 
                     <input type="hidden" placeholder="id" id="addId" name="addId">
 
-                    <div class="form-group"><label>Unit Name </label> <input type="text" placeholder="Enter Unit Name" id="unitName" name="unitName" class="form-control"></div>
-                    <div class="form-group"><label>Unit Description</label> <input type="text" placeholder="Enter Unit Description" id="unitdescription" name="unitdescription" class="form-control"></div>
+                    <div class="form-group"><label>Paymwnt Type </label> <input type="text" placeholder="Enter payment Type" id="paymenttype" name="paymenttype" class="form-control"></div>
+                    <div class="form-group"><label>Payment Description</label> <input type="text" placeholder="Enter payment Description" id="description" name="description" class="form-control"></div>
 
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-reset="modal" id='reset'>Reset</button>
                     <!-- <button type="button" class="btn btn-white" data-dismiss="modal" id='closeUserModal'>Close</button> -->
-                    <button type="submit" id="addItemBtn" class="btn btn-primary">Save changes</button>
+                    <button type="submit" id="addtypeBtn" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </form>
@@ -102,20 +103,20 @@ edit modal -->
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" id="closeModalIcon"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Edit Unit of Measurement </h4>
-                    <small class="font-bold">Please enter the Inventory details </small>
+                    <h4 class="modal-title">Edit payment type </h4>
+                    <small class="font-bold">Please enter the payment details </small>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" placeholder="id" id="editId" name="editId">
 
-                    <div class="form-group"><label>Unit Name </label> <input type="text" placeholder="Enter Unit Name" id="editunitname" name="editunitname" class="form-control"></div>
-                    <div class="form-group"><label>Unit Description</label> <input type="text" placeholder="Enter Unit Description" id="editdescription" name="editdescription" class="form-control"></div>
+                    <div class="form-group"><label>Paymwnt Type </label> <input type="text" placeholder="Enter Paymwnt Type" id="edittype" name="edittype" class="form-control"></div>
+                    <div class="form-group"><label>Payment Description</label> <input type="text" placeholder="Enter Unit Payment Description" id="editdescription" name="editdescription" class="form-control"></div>
 
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-white" data-reset="modal" id='reset'>Reset</button> -->
                     <button type="button" class="btn btn-white" data-dismiss="modal" id='closeUserModal'>Close</button>
-                    <button type="submit" id="editItemBtn" class="btn btn-primary">Save changes</button>
+                    <button type="submit" id="editTypeBtn" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </form>
@@ -126,34 +127,34 @@ edit modal -->
 <script>
     $(document).ready(function() {
         $('.footable').footable();
-        getAllUnit();
+        getAlltype();
 
         page();
 
         $("#addUnit").validate({
             rules: {
-                unitName: {
+                paymenttype: {
                     required: true,
                 },
-                unitdescription: {
+                description: {
                     required: true,
                 },
             },
 
             submitHandler: function(form) {
                 var data = {
-                    'unitName': $('#unitName').val(),
-                    'unitdescription': $('#unitdescription').val(),
+                    'paymenttype': $('#paymenttype').val(),
+                    'description': $('#description').val(),
 
                 };
                 $.ajax({
                     method: "POST",
-                    url: "<?= base_url() . 'index.php/unit/addunit' ?>",
+                    url: "<?= base_url() . 'index.php/payment/addtype' ?>",
                     data: data,
                     success: function(response) {
-                        getAllUnit();
+                        getAlltype();
                         $('#addItemModal').modal('hide');
-                        swal("Success", "Item added successfully!", "success")
+                        swal("Success", "Type added successfully!", "success")
                         resetAddFormValues()
                     }
                 })
@@ -162,7 +163,7 @@ edit modal -->
 
         $("#editUnit").validate({
             rules: {
-                editunitname: {
+                edittype: {
                     required: true,
                 },
 
@@ -175,21 +176,21 @@ edit modal -->
             submitHandler: function(form) {
                 var data = {
                    
-                    'editid'              : $('#editId').val(),
-                    'editunitname'        : $('#editunitname').val(),
-                    'editdescription'     : $('#editdescription').val(),
+                    'editid'             : $('#editId').val(),
+                    'edittype'           : $('#edittype').val(),
+                    'editdescription'    : $('#editdescription').val(),
                     
                 };
 
             
                   $.ajax({
                     method: "POST",
-                    url: "<?= base_url() . 'index.php/unit/updateunitData' ?>",
+                    url: "<?= base_url() . 'index.php/payment/updatetypeData' ?>",
                     data: data,
                     success: function(response) {
                         $('#editItem').modal('hide');
-                        getAllUnit();
-                        swal ( "Success" ,  "unit Updated successfully!" ,  "success" )
+                        getAlltype();
+                        swal ( "Success" ,  "type Updated successfully!" ,  "success" )
                        
                     }
                 })
@@ -203,12 +204,12 @@ edit modal -->
     });
 
 
-    function getAllUnit() {
+    function getAlltype() {
         $(".ibox-content-loader").css("display", "block");
         $(".ibox-content").css("display", "none");
         $.ajax({
             method: "GET",
-            url: "<?= base_url() . 'index.php/unit/getAllUnit' ?>",
+            url: "<?= base_url() . 'index.php/payment/getAlltype' ?>",
             success: function(response) {
                 $(".ibox-content-loader").css("display", "none");
                 $(".ibox-content").css("display", "block");
@@ -222,10 +223,10 @@ edit modal -->
         })
     }
 
-    function deleteunit(id) {
+    function deletetype(id) {
         swal({
             title: "Are you sure?",
-            text: "You will not be able to recover this unit data!",
+            text: "You will not be able to recover this type data!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#ed5565",
@@ -234,32 +235,32 @@ edit modal -->
         }, function() {
             $.ajax({
                 method: "GET",
-                url: "<?= base_url() . 'index.php/unit/deleteunit' ?>",
+                url: "<?= base_url() . 'index.php/payment/deletetype' ?>",
                 data: {
                     "id": id
                 },
                 success: function(response) {
-                    swal("Deleted!", "Unit has been deleted.", "success");
-                    getAllUnit();
+                    swal("Deleted!", "type has been deleted.", "success");
+                    getAlltype();
                 }
             });
         });
     }
 
-    function editunit(id) {
-        var unitId = id;
+    function edittype(id) {
+        var typeId = id;
         $.ajax({
             method: "GET",
-            url: "<?= base_url() . 'index.php/unit/getunitData' ?>",
+            url: "<?= base_url() . 'index.php/payment/gettypeData' ?>",
             data: {
                 "id": id
             },
             dataType: 'json',
             success: function(data) {
                 $('#editItem').modal('show');
-                $('#editId').val(unitId);
-                $('#editunitname').val(data[0]['unitname']);
-                $('#editdescription').val(data[0]['description']);
+                $('#editId').val(typeId);
+                $('#edittype').val(data[0]['payment_type']);
+                $('#editdescription').val(data[0]['payment_description']);
                
             }
 
@@ -269,14 +270,14 @@ edit modal -->
 
 
     function resetAddFormValues() {
-        $('#unitName').val('');
-        $('#unitdescription').val('');
+        $('#paymenttype').val('');
+        $('#description').val('');
 
     }
 
     function page() {
         $.ajax({
-            url: "<?= base_url() . 'index.php/unit/page' ?>",
+            url: "<?= base_url() . 'index.php/payment/page' ?>",
             success: function(result) {
                 $(".page").html(result);
             }

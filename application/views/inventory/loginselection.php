@@ -1,9 +1,15 @@
 
+
 <div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    
     <div class="modal-dialog">
+        
         <div class="modal-content animated flipInY">
+        <div style="margin :auto;">
+                <img src="<?= base_url(); ?>assets/img/logo.jpg" class="logo-img" style="width: 229px; height: 239px;">
+            </div>
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <!-- <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> -->
                 <h4 class="modal-title">Login As</h4>
                 <small class="font-bold">The User Account Type You Want To Login.</small>
             </div>
@@ -23,10 +29,16 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $('#myModal2').modal('show');
+    $(document).ready(function(){
+        // $('#myModal2').modal('show');
+        $("#myModal2").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
     });
 
+    $('#myModal2').modal('show');
+    
     function redirect(loc) {
         url = "<?= base_url() . 'index.php/Login/index?roleid=' ?>"+loc;
         window.location.href = url;

@@ -58,16 +58,16 @@
                             <div class="col-lg-10"><input type="text" name="farmname" id="farmname" value="<?= $consumerInfo[0]->farm_name; ?>" placeholder="Email" class="form-control">
                             </div>
                         </div>
-                            <div class="form-group row"><label class="col-lg-2 col-form-label">First Name</label>
+                        <div class="form-group row"><label class="col-lg-2 col-form-label">Email</label>
+                            <div class="col-lg-10"><input type="email" name="email" id="email" value="<?= $consumerInfo[0]->email; ?>" placeholder="Email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row"><label class="col-lg-2 col-form-label">First Name</label>
                             <div class="col-lg-10"><input type="text" name="firstname" id="firstname" value="<?= $consumerInfo[0]->first_name; ?>" placeholder="First Name" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row"><label class="col-lg-2 col-form-label">Last Name</label>
                             <div class="col-lg-10"><input type="text" name="lastname" id="lastname" value="<?= $consumerInfo[0]->last_name; ?>" placeholder="Last Name" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row"><label class="col-lg-2 col-form-label">Email</label>
-                            <div class="col-lg-10"><input type="email" name="email" id="email" value="<?= $consumerInfo[0]->email; ?>" placeholder="Email" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row"><label class="col-lg-2 col-form-label">NIC</label>
@@ -98,13 +98,7 @@
                             <div class="col-lg-10"><input type="text" name="city" id="city" value="<?= $consumerInfo[0]->city; ?>" placeholder="City" class="form-control">
                             </div>
                         </div>
-                           
-                        <div class="form-group row"><label class="col-lg-2 col-form-label">Crops </label>
-                            <div class="col-lg-10">
-                            <input class="tagsinput form-control" type="text" id="showcrop" value="Amsterdam,Washington,Sydney,Beijing,Cairo" />
-                            </div>
-                        </div>
-                       <div class="form-group row">
+                        <div class="form-group row">
                             <div class="col-lg-offset-2 col-lg-10">
                                 <button type="submit" class="btn btn-sm btn-primary" id="updatebtn">Update Details</button>
                             </div>
@@ -115,30 +109,9 @@
         </div>
     </div>
 </div>
-<!-- <div class="wrapper wrapper-content" style="margin-top: -63px;">
+<div class="wrapper wrapper-content">
     <div class="row">
-        <div class="col-lg-6">
-            <div class="ibox">
-                <div class="ibox-title">
-                    <h5>Crops details </h5>
-                </div>
-                <div class="ibox-content">
-                    <p class="font-bold">
-                        Selected Crops
-                    </p>
-                    <input class="tagsinput form-control" type="text" id="showcrop" value="Amsterdam,Washington,Sydney,Beijing,Cairo" />
-                    <button class="btn btn-primary btn-block" onclick="addcrops()">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- Farmer image -->
-
-<div class="wrapper wrapper-content" style="margin-top: -63px;">
-    <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-8">
             <div class="ibox ">
                 <div class="ibox-content">
                     <h2>Farm Images</h2>
@@ -159,33 +132,44 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-4">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Corps List</h5>
+                </div>
+                <div class="ibox-content">
+                    <p>
+                        Select Your Prefered Corps to sell
+                    </p>
+                    <div class="form-group">
+                        <div>
+                            <select id="aioConceptName" data-placeholder="Choose an Item..." class="chosen-select" multiple style="width:350px;" tabindex="4" multiple="multiple">
+                                <?php foreach ($inventoryData as $item) { ?>
+                                    <?php $key = array_search($item->id, array_column($selectedCorps, 'corp_id')); ?>
+                                    <?php if ($key === 0 || $key > 0) { ?>
+                                        <option selected value="<?= $item->id; ?>"><?= $item->itemname; ?></option>
+                                    <?php } else { ?>
+                                        <option  value="<?= $item->id; ?>"><?= $item->itemname; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button type="button" class="btn btn-sm btn-primary" id="savecrops">Update Corps List</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-
-
 <script>
     $(document).ready(function() {
-
-        $('.tagsinput').tagsinput({
-            tagClass: 'label label-primary'
-        });
-
-        $('#tags-input').on('beforeItemAdd', function(event) {
-            var tag = event.item;
-            // Do some processing here
-
-            // if (!event.options || !event.options.preventPost) {
-            //     $.ajax('/ajax-url', ajaxData, function(response) {
-            //         if (response.failure) {
-            //             // Remove the tag since there was a failure
-            //             // "preventPost" here will stop this ajax call from running when the tag is removed
-            //             $('#tags-input').tagsinput('remove', tag, {
-            //                 preventPost: true
-            //             });
-            //         }
-            //     });
-            // }
+        $('.chosen-select').chosen({
+            width: "100%",
         });
 
         jQuery.validator.addMethod("customEmail", function(value, element) {
@@ -222,13 +206,13 @@
                 contact1: {
                     required: true,
                     number: true,
-                    minlength: 9,
+                    minlength: 10,
                     maxlength: 15,
                 },
                 contact2: {
                     required: true,
                     number: true,
-                    minlength: 9,
+                    minlength: 10,
                     maxlength: 15,
                 },
                 billing: {
@@ -259,9 +243,7 @@
                     'delivery': $('#delivery').val(),
                     'city': $('#city').val(),
                     'area': $('#area').val(),
-                    'tags' : $(".tagsinput").val()
-                    };
-
+                };
                 $.ajax({
                     method: "POST",
                     url: "<?= base_url() . 'index.php/consumer/updateConsumer' ?>",
@@ -272,5 +254,22 @@
                 })
             }
         });
+
+
+        $("#savecrops").click(function() {
+            var corpslist = $('#aioConceptName').val();
+            var id = "<?= $consumerInfo[0]->id; ?>"
+            $.ajax({
+                method: "POST",
+                url: "<?= base_url() . 'index.php/consumer/updatefarmercorpslist' ?>",
+                data: {
+                    'id': id,
+                    'corpslist': corpslist
+                },
+                success: function(response) {
+                    swal("Success", "Corps List Updated successfully!", "success")
+                }
+            })
+        })
     })
 </script>
