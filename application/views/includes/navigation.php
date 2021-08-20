@@ -69,12 +69,17 @@
                         <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Inventory</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="<?= base_url() . 'index.php/inventory/index' ?>">Inventory Master</a></li>
+                            <li><a href="<?= base_url() . 'index.php/inventory/wastage' ?>">Inventory Wastage</a></li>
                             <li><a href="<?= base_url() . 'index.php/storage/index' ?>">Storage</a></li>
-                            
+                            <li><a href="<?= base_url() . 'index.php/inbound/index' ?>">Receiving Goods</a></li>
                             <li><a href="<?= base_url() . 'index.php/unit/index' ?>">Unit of Measurement</a></li>
                             <li><a href="<?= base_url() . 'index.php/category/index' ?>">Category</a></li>
-                      
-                            <li><a href="<?= base_url() . 'index.php/inbound/index' ?>">Receiving Goods</a></li>
+                            <li><a href="#" id="damian">Inventory Setup<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a href="<?= base_url() . 'index.php/inventory/salesPrice' ?>">Sale Prices</a></li>
+                                    <li><a href="<?= base_url() . 'index.php/inventory/wastageReason' ?>">Wastage Reasons</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                     <li><a href="#"><i class="fa fa-car"></i> <span class="nav-label">Manage Delivery</span></a>
